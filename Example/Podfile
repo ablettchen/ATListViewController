@@ -1,0 +1,17 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'ATListViewController_Example' do
+  
+  pod 'LookinServer', :configurations => ['Debug']
+  
+  pod 'ATListViewController', :path => '../'
+
+  target 'ATListViewController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+  
+end
