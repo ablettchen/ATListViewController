@@ -15,8 +15,27 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ATCellProtocal <NSObject>
 
 @required
+
+// cell Model
 @property (nonatomic, strong, nullable) id<ATCellModelProtocol> cellModel;
-+ (CGFloat)heightForCellModel:(id<ATCellModelProtocol> _Nullable)cellModel;
+
+
+@optional
+
+// 分隔线
+- (UIView *)seperator;
+
+// 分割线边距，默认16
+- (UIEdgeInsets)seperatorInsets;
+
+// 分隔线颜色，默认黑色0.1
+- (UIColor *)seperatorColor;
+
+// 是否显示分隔线，默认 YES
+- (BOOL)isShowSeperator;
+
+// 是否隐藏最后一个分隔线，默认 YES（仅对cell有效）
+- (BOOL)isHideLastSeperator;
 
 @end
 
@@ -26,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ATCellStyleProtocal <NSObject>
 
+// cell宽
 @property (nonatomic, assign) CGFloat cellWidth;
 
 @end
@@ -33,12 +53,31 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ATCellModelProtocol <NSObject>
 
 @required
+
+// cell 类
 @property (nonatomic, strong, nonnull) Class<ATCellProtocal> cellClass;
+
+// cell 数据
 @property (nonatomic, strong, nonnull) id cellData;
+
+// cell 样式
 @property (nonatomic, strong) id<ATCellStyleProtocal> cellStyle;
 
-#warning TODO
+// cell 高度
 @property (nonatomic, assign) CGFloat cellHeight;
+
+@end
+
+
+
+#pragma mark - Action
+
+@protocol ATCellActionProtocal <NSObject>
+
+@optional
+
+// 点击事件
+- (void)atCell:(__kindof id<ATCellProtocal>)cell action:(NSUInteger)action;
 
 @end
 

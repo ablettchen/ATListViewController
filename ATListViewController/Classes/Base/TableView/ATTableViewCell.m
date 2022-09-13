@@ -32,8 +32,12 @@
     _cellModel = cellModel;
 }
 
-+ (CGFloat)heightForCellModel:(id<ATCellModelProtocol>)cellModel {
-    return 0.f;
+- (UIView *)seperator {
+    if (!_seperator) {
+        _seperator = UIView.new;
+        _seperator.backgroundColor = self.seperatorColor;
+    }
+    return _seperator;
 }
 
 - (UIEdgeInsets)seperatorInsets {
@@ -45,6 +49,10 @@
 }
 
 - (BOOL)isShowSeperator {
+    return YES;
+}
+
+- (BOOL)isHideLastSeperator {
     return YES;
 }
 
@@ -62,14 +70,6 @@
 }
 
 #pragma mark - getter
-
-- (UIView *)seperator {
-    if (!_seperator) {
-        _seperator = UIView.new;
-        _seperator.backgroundColor = self.seperatorColor;
-    }
-    return _seperator;
-}
 
 #pragma mark - setter
 

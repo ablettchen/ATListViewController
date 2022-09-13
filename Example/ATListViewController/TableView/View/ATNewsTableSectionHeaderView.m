@@ -1,20 +1,20 @@
 //
-//  ATExampleTableSectionHeaderView.m
+//  ATNewsTableSectionHeaderView.m
 //  ATListViewController_Example
 //
 //  Created by ablett on 2022/9/9.
-//  Copyright © 2022 chenjungang. All rights reserved.
+//  Copyright © 2022 ablett. All rights reserved.
 //
 
-#import "ATExampleTableSectionHeaderView.h"
+#import "ATNewsTableSectionHeaderView.h"
 #import <Masonry/Masonry.h>
 
-@interface ATExampleTableSectionHeaderView ()
+@interface ATNewsTableSectionHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *moreButton;
 @end
 
-@implementation ATExampleTableSectionHeaderView
+@implementation ATNewsTableSectionHeaderView
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithReuseIdentifier:reuseIdentifier];
@@ -44,11 +44,6 @@
     }
 }
 
-+ (CGFloat)heightForCellModel:(id<ATCellModelProtocol>)cellModel {
-    
-    return 60;
-}
-
 #pragma mark - private
 
 - (void)_prepareView {
@@ -69,6 +64,9 @@
 
 - (void)_moreButtonAction:(UIButton *)sender {
     
+    if ([self.atDelegate respondsToSelector:@selector(atCell:action:)]) {
+        [self.atDelegate atCell:self action:2001];
+    }
 }
 
 #pragma mark - getter
@@ -130,11 +128,6 @@
         NSString *obj = cellModel.cellData;
         self.titleLabel.text = obj;
     }
-}
-
-+ (CGFloat)heightForCellModel:(id<ATCellModelProtocol>)cellModel {
-    
-    return 30;
 }
 
 #pragma mark - private

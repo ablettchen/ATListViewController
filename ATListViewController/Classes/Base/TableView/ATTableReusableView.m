@@ -32,8 +32,12 @@
     _cellModel = cellModel;
 }
 
-+ (CGFloat)heightForCellModel:(id<ATCellModelProtocol>)cellModel {
-    return 0.f;
+- (UIView *)seperator {
+    if (!_seperator) {
+        _seperator = UIView.new;
+        _seperator.backgroundColor = self.seperatorColor;
+    }
+    return _seperator;
 }
 
 - (UIEdgeInsets)seperatorInsets {
@@ -52,24 +56,9 @@
 
 - (void)_atPrepareViews {
     
-    if (self.isShowSeperator) {
-        [self.contentView addSubview:self.seperator];
-        [self.seperator mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.right.equalTo(self.contentView).insets(self.seperatorInsets);
-            make.height.mas_equalTo(0.5);
-        }];
-    }
 }
 
 #pragma mark - getter
-
-- (UIView *)seperator {
-    if (!_seperator) {
-        _seperator = UIView.new;
-        _seperator.backgroundColor = self.seperatorColor;
-    }
-    return _seperator;
-}
 
 #pragma mark - setter
 

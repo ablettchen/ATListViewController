@@ -1,6 +1,6 @@
 //
 //  ATTableViewController.m
-//  ATTableViewController
+//  ATListViewController
 //
 //  Created by ablett on 2022/9/9.
 //
@@ -93,6 +93,10 @@
     return nil;
 }
 
+- (id<ATCellActionProtocal>)cellDelegate {
+    return self;
+}
+
 - (void)finished:(NSError * _Nullable)error
          section:(NSArray <id<ATSectionProtocal, ATCellModelProtocol>> *)sections
       nextPageId:(NSString * _Nullable)nextPageId {
@@ -100,7 +104,19 @@
     if (error == nil) {
         self.atTableView.atLoader.range.location = nextPageId;
         if (self.atTableView.atLoader.state == ATDataLoadStateRefresh) { [self.sections removeAllObjects]; }
-        if (sections.count > 0) { [self.sections addObjectsFromArray:sections]; }
+        
+        if (sections.count) {
+            
+            NSMutableArray <id<ATSectionProtocal,ATCellModelProtocol>> *newSections = [NSMutableArray array];
+            for (id<ATSectionProtocal,ATCellModelProtocol>  _Nonnull obj in sections) {
+                id<ATSectionProtocal,ATCellModelProtocol>  _Nonnull targetObj = [self sectionObjectWithIdentifier:obj.identifier];
+                if (targetObj) { [targetObj.cellModels addObjectsFromArray:obj.cellModels]; }else { [newSections addObject:obj]; }
+            }
+            
+            if (newSections.count) {
+                [self.sections addObjectsFromArray:newSections];
+            }
+        }
     }
     
     [self.atTableView.atLoader finished:error];
@@ -120,9 +136,50 @@
     return view;
 }
 
+- (void)_showSeperatorIfNeededInCell:(__kindof UITableViewCell<ATCellProtocal> *)cell
+                         atIndexPath:(NSIndexPath *)indexPath {
+    
+    if (cell.isShowSeperator) {
+        if (cell.seperator) {
+            if (cell.seperator.superview == nil) {
+                [cell.contentView addSubview:cell.seperator];
+                [cell.seperator mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.bottom.right.equalTo(cell.contentView).insets(cell.seperatorInsets);
+                    make.height.mas_equalTo(0.5);
+                }];
+            }
+            if (cell.isHideLastSeperator) {
+                NSUInteger rowCount = [self.atTableView numberOfRowsInSection:indexPath.section];
+                cell.seperator.hidden = rowCount - 1 == indexPath.row;
+            }else {
+                cell.seperator.hidden = NO;
+            }
+        }
+    }
+}
+
+- (void)_showSeperatorIfNeededInView:(__kindof UITableViewHeaderFooterView<ATCellProtocal> *)view {
+    
+    if (view.isShowSeperator) {
+        if (view.seperator) {
+            if (view.seperator.superview == nil) {
+                [view.contentView addSubview:view.seperator];
+                [view.seperator mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.bottom.right.equalTo(view.contentView).insets(view.seperatorInsets);
+                    make.height.mas_equalTo(0.5);
+                }];
+            }
+        }
+    }
+}
+
 #pragma mark - getter
 
 #pragma mark - delegate
+
+#pragma mark - ATCellActionProtocal
+
+- (void)atCell:(__kindof UITableViewCell<ATCellProtocal> *)cell action:(NSUInteger)action {}
 
 #pragma mark - UITableViewDataSource, UITableViewDelegate
 
@@ -154,6 +211,9 @@
             [tableView registerClass:cellClass forCellReuseIdentifier:identifier];
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
         }
+        
+        [self _showSeperatorIfNeededInCell:cell atIndexPath:indexPath];
+        if (cell.atDelegate == nil) { cell.atDelegate = self.cellDelegate; }
         cell.cellModel = cellModel;
         return cell;
     }
@@ -167,19 +227,20 @@
     id<ATCellModelProtocol> cellModel = [self cellModelAtIndexPath:indexPath];
     
     if (cellModel) {
-        Class<ATCellProtocal> cellClass = cellModel.cellClass;
-        return [cellClass heightForCellModel:cellModel];
+        return cellModel.cellHeight;
     }
     
     return 0.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-
+    
     id<ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
         __kindof UITableViewHeaderFooterView<ATCellProtocal> *view = [self _dequeueReusableHeaderFooterViewWithViewClass:sectionObj.headerModel.cellClass];
+        [self _showSeperatorIfNeededInView:view];
+        if (view.atDelegate == nil) { view.atDelegate = self.cellDelegate; }
         view.cellModel = sectionObj.headerModel;
         return view;
     }
@@ -192,19 +253,20 @@
     id<ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
-        Class <ATCellProtocal> viewClass = sectionObj.headerModel.cellClass;
-        return [viewClass heightForCellModel:sectionObj];
+        return sectionObj.headerModel.cellHeight;
     }
     
     return CGFLOAT_MIN;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-
+    
     id<ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
         __kindof UITableViewHeaderFooterView<ATCellProtocal> *view = [self _dequeueReusableHeaderFooterViewWithViewClass:sectionObj.footerModel.cellClass];
+        [self _showSeperatorIfNeededInView:view];
+        if (view.atDelegate == nil) { view.atDelegate = self.cellDelegate; }
         view.cellModel = sectionObj.footerModel;
         return view;
     }
@@ -217,8 +279,7 @@
     id<ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
-        Class <ATCellProtocal> viewClass = sectionObj.footerModel.cellClass;
-        return [viewClass heightForCellModel:sectionObj];
+        return sectionObj.footerModel.cellHeight;
     }
     
     return CGFLOAT_MIN;

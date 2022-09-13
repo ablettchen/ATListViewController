@@ -13,15 +13,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ATSectionProtocal <NSObject>
 
-@property (nonatomic, copy, nullable) NSString *identifier;     // 唯一标识
-@property (nonatomic, copy, nullable) NSString *title;          // 标题
-@property (nonatomic, copy, nullable) NSString *subTitle;       // 子标题
-@property (nonatomic, strong, nonnull) NSMutableArray <id<ATCellModelProtocol>>*cellModels;   // 列表
+// 唯一标识
+@property (nonatomic, copy, nullable) NSString *identifier;
 
-@property (nonatomic, assign) BOOL isPageList;                  // 是否为分页列表（区别于本地Section）
-@property (nonatomic, assign) NSUInteger section;               // section 序号
+// 列表
+@property (nonatomic, strong, nonnull) NSMutableArray <id<ATCellModelProtocol>>*cellModels;
 
+// 是否为分页列表（区别于本地Section）
+@property (nonatomic, assign) BOOL isPageList;
+
+// section 序号
+@property (nonatomic, assign) NSUInteger section;
+
+// header model
 @property (nonatomic, strong) id <ATCellModelProtocol> headerModel;
+
+// footer model
 @property (nonatomic, strong) id <ATCellModelProtocol> footerModel;
 
 @end

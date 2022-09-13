@@ -12,10 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ATTableViewCell : UITableViewCell<ATCellProtocal>
 
-- (UIEdgeInsets)seperatorInsets;
-- (UIColor *)seperatorColor;
-- (BOOL)isShowSeperator;
-
 @end
 
 NS_ASSUME_NONNULL_END

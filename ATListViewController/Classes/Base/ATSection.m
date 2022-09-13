@@ -10,8 +10,6 @@
 @implementation ATSection
 
 @synthesize identifier = _identifier;
-@synthesize title = _title;
-@synthesize subTitle = _subTitle;
 @synthesize cellModels = _cellModels;
 @synthesize isPageList = _isPageList;
 @synthesize section = _section;
@@ -21,5 +19,6 @@
 @synthesize cellClass = _cellClass;
 @synthesize cellData = _cellData;
 @synthesize cellStyle = _cellStyle;
+@synthesize cellHeight = _cellHeight;
 
 @end

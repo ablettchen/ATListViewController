@@ -3,20 +3,25 @@
 //  ATListViewController_Example
 //
 //  Created by ablett on 2022/9/9.
-//  Copyright © 2022 chenjungang. All rights reserved.
+//  Copyright © 2022 ablett. All rights reserved.
 //
 
 #import "ATExampleTableViewController.h"
-#import "ATExampleViewModel.h"
+#import "ATNewsViewModel.h"
+#import "ATNews.h"
 
 
 @interface ATExampleTableViewController ()
-@property (nonatomic, strong) ATExampleViewModel *viewModel;
+@property (nonatomic, strong) ATNewsViewModel *viewModel;
 @end
 
 @implementation ATExampleTableViewController
 
 #pragma mark - override
+
+- (enum UITableViewStyle)style {
+    return UITableViewStyleGrouped;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,17 +30,28 @@
     __weak typeof(self) wSelf = self;
     
     [self.atTableView atUpdateLoadConf:^(ATDataLoadConf * _Nonnull conf) {
-        conf.component = ATDataLoadComponentRefresh;
+        conf.component = ATDataLoadComponentRefresh | ATDataLoadComponentLoadMore;
     }];
     
     [self.atTableView atLoadData:^(ATDataLoader * _Nonnull loader) {
         
         [wSelf.viewModel requestData:loader.rangeDic
-                          completion:^(NSError * _Nullable error, NSArray<id<ATSectionProtocal,ATCellModelProtocol>> * _Nullable datas) {
-            [wSelf finished:error section:datas nextPageId:nil];
+                          completion:^(NSError * _Nullable error, NSArray<id<ATSectionProtocal,ATCellModelProtocol>> * _Nullable datas, NSString * _Nullable nextId) {
+            [wSelf finished:error section:datas nextPageId:nextId];
         }];
         
     }];
+}
+
+- (void)atCell:(__kindof id<ATCellProtocal>)cell action:(NSUInteger)action {
+    
+    if ([cell.cellModel isKindOfClass:ATNewsCellModel.class]) {
+        ATNewsCellModel *cellModel = cell.cellModel;
+        NSLog(@"%tu - %@", action, cellModel.cellData.title);
+    }else if ([cell.cellModel isKindOfClass:ATCellModel.class]) {
+        ATCellModel *cellModel = cell.cellModel;
+        NSLog(@"%tu - %@", action, cellModel.cellData);
+    }
 }
 
 #pragma mark - public
@@ -46,9 +62,9 @@
 
 #pragma mark - setter
 
-- (ATExampleViewModel *)viewModel {
+- (ATNewsViewModel *)viewModel {
     if (!_viewModel) {
-        _viewModel = ATExampleViewModel.new;
+        _viewModel = ATNewsViewModel.new;
     }
     return _viewModel;
 }

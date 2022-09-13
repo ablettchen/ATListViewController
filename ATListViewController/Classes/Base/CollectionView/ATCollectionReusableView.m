@@ -11,8 +11,4 @@
 
 @synthesize cellModel = _cellModel;
 
-+ (CGFloat)heightForCellModel:(id<ATCellModelProtocol>)cellModel {
-    return CGFLOAT_MIN;
-}
-
 @end

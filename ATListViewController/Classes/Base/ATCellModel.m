@@ -14,9 +14,4 @@
 @synthesize cellStyle = _cellStyle;
 @synthesize cellHeight = _cellHeight;
 
-
-- (CGFloat)cellHeight {
-    return 0.f;
-}
-
 @end

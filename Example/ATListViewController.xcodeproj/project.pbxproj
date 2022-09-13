@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		194B713C28D0204A00A792D2 /* NewsP1.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 194B713A28D0204A00A792D2 /* NewsP1.JSON */; };
+		194B713D28D0204A00A792D2 /* NewsP2.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 194B713B28D0204A00A792D2 /* NewsP2.JSON */; };
+		194B714328D0403B00A792D2 /* NewsP3.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 194B714228D0403B00A792D2 /* NewsP3.JSON */; };
 		19D546F428CB25C400FB8263 /* ATExampleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D546F328CB25C400FB8263 /* ATExampleTableViewController.m */; };
-		19D546FB28CB298700FB8263 /* ATExampleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D546FA28CB298700FB8263 /* ATExampleTableViewCell.m */; };
-		19D5470228CB3B5800FB8263 /* ATExampleTableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470128CB3B5800FB8263 /* ATExampleTableSectionHeaderView.m */; };
-		19D5470928CB405900FB8263 /* ATExampleTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470828CB405900FB8263 /* ATExampleTableModel.m */; };
-		19D5470E28CB424E00FB8263 /* ATExampleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470D28CB424E00FB8263 /* ATExampleViewModel.m */; };
+		19D546FB28CB298700FB8263 /* ATNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D546FA28CB298700FB8263 /* ATNewsTableViewCell.m */; };
+		19D5470228CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470128CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m */; };
+		19D5470928CB405900FB8263 /* ATNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470828CB405900FB8263 /* ATNews.m */; };
+		19D5470E28CB424E00FB8263 /* ATNewsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470D28CB424E00FB8263 /* ATNewsViewModel.m */; };
 		5136A8EDC55CDBF09741B6E0 /* Pods_ATListViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D59384A3BEF45989358B9D /* Pods_ATListViewController_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -42,16 +45,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		194B713A28D0204A00A792D2 /* NewsP1.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewsP1.JSON; sourceTree = "<group>"; };
+		194B713B28D0204A00A792D2 /* NewsP2.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewsP2.JSON; sourceTree = "<group>"; };
+		194B714228D0403B00A792D2 /* NewsP3.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewsP3.JSON; sourceTree = "<group>"; };
 		19D546F228CB25C400FB8263 /* ATExampleTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATExampleTableViewController.h; sourceTree = "<group>"; };
 		19D546F328CB25C400FB8263 /* ATExampleTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATExampleTableViewController.m; sourceTree = "<group>"; };
-		19D546F928CB298700FB8263 /* ATExampleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATExampleTableViewCell.h; sourceTree = "<group>"; };
-		19D546FA28CB298700FB8263 /* ATExampleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATExampleTableViewCell.m; sourceTree = "<group>"; };
-		19D5470028CB3B5800FB8263 /* ATExampleTableSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATExampleTableSectionHeaderView.h; sourceTree = "<group>"; };
-		19D5470128CB3B5800FB8263 /* ATExampleTableSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATExampleTableSectionHeaderView.m; sourceTree = "<group>"; };
-		19D5470728CB405900FB8263 /* ATExampleTableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATExampleTableModel.h; sourceTree = "<group>"; };
-		19D5470828CB405900FB8263 /* ATExampleTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATExampleTableModel.m; sourceTree = "<group>"; };
-		19D5470C28CB424E00FB8263 /* ATExampleViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATExampleViewModel.h; sourceTree = "<group>"; };
-		19D5470D28CB424E00FB8263 /* ATExampleViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATExampleViewModel.m; sourceTree = "<group>"; };
+		19D546F928CB298700FB8263 /* ATNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATNewsTableViewCell.h; sourceTree = "<group>"; };
+		19D546FA28CB298700FB8263 /* ATNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATNewsTableViewCell.m; sourceTree = "<group>"; };
+		19D5470028CB3B5800FB8263 /* ATNewsTableSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATNewsTableSectionHeaderView.h; sourceTree = "<group>"; };
+		19D5470128CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATNewsTableSectionHeaderView.m; sourceTree = "<group>"; };
+		19D5470728CB405900FB8263 /* ATNews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATNews.h; sourceTree = "<group>"; };
+		19D5470828CB405900FB8263 /* ATNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATNews.m; sourceTree = "<group>"; };
+		19D5470C28CB424E00FB8263 /* ATNewsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATNewsViewModel.h; sourceTree = "<group>"; };
+		19D5470D28CB424E00FB8263 /* ATNewsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATNewsViewModel.m; sourceTree = "<group>"; };
 		41642B0E3FAB4679C4FED1B4 /* Pods-ATListViewController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATListViewController_Example.debug.xcconfig"; path = "Target Support Files/Pods-ATListViewController_Example/Pods-ATListViewController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		567BCC4574C390CE8262DF1B /* ATListViewController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ATListViewController.podspec; path = ../ATListViewController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6003F58A195388D20070C39A /* ATListViewController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATListViewController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +116,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		194B713E28D0205800A792D2 /* FakeJSON */ = {
+			isa = PBXGroup;
+			children = (
+				194B713A28D0204A00A792D2 /* NewsP1.JSON */,
+				194B713B28D0204A00A792D2 /* NewsP2.JSON */,
+				194B714228D0403B00A792D2 /* NewsP3.JSON */,
+			);
+			path = FakeJSON;
+			sourceTree = "<group>";
+		};
 		19D5470428CB3FF600FB8263 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,10 +148,10 @@
 		19D5470628CB402600FB8263 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				19D5470028CB3B5800FB8263 /* ATExampleTableSectionHeaderView.h */,
-				19D5470128CB3B5800FB8263 /* ATExampleTableSectionHeaderView.m */,
-				19D546F928CB298700FB8263 /* ATExampleTableViewCell.h */,
-				19D546FA28CB298700FB8263 /* ATExampleTableViewCell.m */,
+				19D5470028CB3B5800FB8263 /* ATNewsTableSectionHeaderView.h */,
+				19D5470128CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m */,
+				19D546F928CB298700FB8263 /* ATNewsTableViewCell.h */,
+				19D546FA28CB298700FB8263 /* ATNewsTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -143,10 +159,11 @@
 		19D5470A28CB406100FB8263 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				19D5470728CB405900FB8263 /* ATExampleTableModel.h */,
-				19D5470828CB405900FB8263 /* ATExampleTableModel.m */,
-				19D5470C28CB424E00FB8263 /* ATExampleViewModel.h */,
-				19D5470D28CB424E00FB8263 /* ATExampleViewModel.m */,
+				19D5470728CB405900FB8263 /* ATNews.h */,
+				19D5470828CB405900FB8263 /* ATNews.m */,
+				19D5470C28CB424E00FB8263 /* ATNewsViewModel.h */,
+				19D5470D28CB424E00FB8263 /* ATNewsViewModel.m */,
+				194B713E28D0205800A792D2 /* FakeJSON */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -337,7 +354,10 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				194B713D28D0204A00A792D2 /* NewsP2.JSON in Resources */,
+				194B713C28D0204A00A792D2 /* NewsP1.JSON in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				194B714328D0403B00A792D2 /* NewsP3.JSON in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +407,8 @@
 				"${BUILT_PRODUCTS_DIR}/LookinServer/LookinServer.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -396,6 +418,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LookinServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -431,11 +455,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19D5470928CB405900FB8263 /* ATExampleTableModel.m in Sources */,
-				19D546FB28CB298700FB8263 /* ATExampleTableViewCell.m in Sources */,
+				19D5470928CB405900FB8263 /* ATNews.m in Sources */,
+				19D546FB28CB298700FB8263 /* ATNewsTableViewCell.m in Sources */,
 				6003F59E195388D20070C39A /* ATAppDelegate.m in Sources */,
-				19D5470228CB3B5800FB8263 /* ATExampleTableSectionHeaderView.m in Sources */,
-				19D5470E28CB424E00FB8263 /* ATExampleViewModel.m in Sources */,
+				19D5470228CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m in Sources */,
+				19D5470E28CB424E00FB8263 /* ATNewsViewModel.m in Sources */,
 				19D546F428CB25C400FB8263 /* ATExampleTableViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* ATViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
