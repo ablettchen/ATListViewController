@@ -42,7 +42,7 @@ NS_INLINE id fetchFakeData(NSString *resource) {
 @implementation ATNewsViewModel
 
 - (void)requestData:(NSDictionary * _Nonnull)params
-         completion:(void(^ _Nonnull)(NSError * _Nullable error, NSArray <id<ATSectionProtocal, ATCellModelProtocol>> * _Nullable datas, NSString * _Nullable nextId))completion {
+         completion:(void(^ _Nonnull)(NSError * _Nullable error, NSArray <id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId))completion {
     
     [self _requestNewsData:params
                 completion:^(NSError * _Nullable error, ATList * _Nullable list) {
@@ -55,7 +55,7 @@ NS_INLINE id fetchFakeData(NSString *resource) {
         sectionObj.section = isFirstPage ? 0 : 1;
         sectionObj.isPageList = list.lastPage;
         
-        NSMutableArray<id<ATCellModelProtocol>> *cellModels = [NSMutableArray array];
+        NSMutableArray<id <ATCellModelProtocol>> *cellModels = [NSMutableArray array];
         
         [list.data enumerateObjectsUsingBlock:^(ATNews * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 

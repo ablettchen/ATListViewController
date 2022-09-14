@@ -35,7 +35,7 @@
 
 #pragma mark - public
 
-- (void)setCellModel:(id<ATCellModelProtocol>)cellModel {
+- (void)setCellModel:(id <ATCellModelProtocol>)cellModel {
     [super setCellModel:cellModel];
     
     if ([cellModel.cellData isKindOfClass:NSString.class]) {
@@ -121,7 +121,7 @@
 
 #pragma mark - public
 
-- (void)setCellModel:(id<ATCellModelProtocol>)cellModel {
+- (void)setCellModel:(id <ATCellModelProtocol>)cellModel {
     [super setCellModel:cellModel];
     
     if ([cellModel.cellData isKindOfClass:NSString.class]) {

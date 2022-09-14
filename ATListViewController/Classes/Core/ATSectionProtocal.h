@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSString *identifier;
 
 // 列表
-@property (nonatomic, strong, nonnull) NSMutableArray <id<ATCellModelProtocol>>*cellModels;
+@property (nonatomic, strong, nonnull) NSMutableArray <id <ATCellModelProtocol>>*cellModels;
 
 // 是否为分页列表（区别于本地Section）
 @property (nonatomic, assign) BOOL isPageList;

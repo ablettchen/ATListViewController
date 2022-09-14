@@ -33,7 +33,7 @@
 
 #pragma mark - public
 
-- (void)setCellModel:(id<ATCellModelProtocol>)model {
+- (void)setCellModel:(id <ATCellModelProtocol>)model {
     [super setCellModel:model];
     
     if ([model isKindOfClass:ATNewsCellModel.class]) {

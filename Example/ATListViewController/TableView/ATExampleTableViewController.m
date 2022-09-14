@@ -36,7 +36,7 @@
     [self.atTableView atLoadData:^(ATDataLoader * _Nonnull loader) {
         
         [wSelf.viewModel requestData:loader.rangeDic
-                          completion:^(NSError * _Nullable error, NSArray<id<ATSectionProtocal, ATCellModelProtocol>> * _Nullable datas, NSString * _Nullable nextId) {
+                          completion:^(NSError * _Nullable error, NSArray<id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId) {
             [wSelf finished:error section:datas nextPageId:nextId];
         }];
         

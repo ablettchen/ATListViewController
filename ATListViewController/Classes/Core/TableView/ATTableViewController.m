@@ -62,7 +62,7 @@
     return self.tableViewHandler;
 }
 
-- (NSMutableArray<id <ATSectionProtocal, ATCellModelProtocol>> *)sections {
+- (NSMutableArray<id <ATSectionProtocal>> *)sections {
     if (!_sections) {
         _sections = [NSMutableArray array];
     }
@@ -88,7 +88,7 @@
 }
 
 - (void)finished:(NSError * _Nullable)error
-         section:(NSArray <id<ATSectionProtocal, ATCellModelProtocol>> *)sections
+         section:(NSArray <id <ATSectionProtocal>> *)sections
       nextPageId:(NSString * _Nullable)nextPageId {
     
     if (error == nil) {
@@ -97,10 +97,10 @@
         
         if (sections.count) {
             
-            NSMutableArray <id <ATSectionProtocal,ATCellModelProtocol>> *newSections = [NSMutableArray array];
-            for (id<ATSectionProtocal,ATCellModelProtocol>  _Nonnull obj in sections) {
-                id<ATSectionProtocal,ATCellModelProtocol>  _Nonnull targetObj = [self.tableViewModel sectionObjectWithIdentifier:obj.identifier];
-                if (targetObj) { [targetObj.cellModels addObjectsFromArray:obj.cellModels]; }else { [newSections addObject:obj]; }
+            NSMutableArray <id <ATSectionProtocal>> *newSections = [NSMutableArray array];
+            for (id <ATSectionProtocal> _Nonnull obj in sections) {
+                id <ATSectionProtocal> _Nonnull targetObj = [self.tableViewModel sectionObjectWithIdentifier:obj.identifier];
+                if (targetObj) { [targetObj.cellModels addObjectsFromArray:obj.cellModels]; } else { [newSections addObject:obj]; }
             }
             
             if (newSections.count) {

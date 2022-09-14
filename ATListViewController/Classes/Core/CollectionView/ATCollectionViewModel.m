@@ -15,7 +15,7 @@
 
 - (__kindof UICollectionReusableView <ATCellProtocal> * _Nullable)_dequeueReusableSupplementaryViewWithKind:(NSString * _Nullable)kind atIndexPath:(NSIndexPath *)indexPath {
     
-    id <ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:indexPath.section];
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:indexPath.section];
     
     if (sectionObj) {
         Class viewClass;
@@ -55,20 +55,20 @@
 
 #pragma mark - public
 
-- (id <ATSectionProtocal, ATCellModelProtocol> _Nullable)sectionObjectInSection:(NSUInteger)section {
+- (id <ATSectionProtocal> _Nullable)sectionObjectInSection:(NSUInteger)section {
     
     if (section < self.sections.count) {
-        id<ATSectionProtocal, ATCellModelProtocol> sectionObj = [self.sections objectAtIndex:section];
+        id <ATSectionProtocal> sectionObj = [self.sections objectAtIndex:section];
         return sectionObj;
     }
     
     return nil;
 }
 
-- (id <ATSectionProtocal, ATCellModelProtocol> _Nullable)sectionObjectWithIdentifier:(NSString * _Nonnull)identifier {
+- (id <ATSectionProtocal> _Nullable)sectionObjectWithIdentifier:(NSString * _Nonnull)identifier {
     
-    __block id<ATSectionProtocal, ATCellModelProtocol> sectionObj;
-    [self.sections enumerateObjectsUsingBlock:^(id <ATSectionProtocal, ATCellModelProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    __block id <ATSectionProtocal> sectionObj;
+    [self.sections enumerateObjectsUsingBlock:^(id <ATSectionProtocal>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.identifier isEqualToString:identifier]) {
             sectionObj = obj;
             *stop = YES;
@@ -116,10 +116,10 @@
     id <ATCellModelProtocol> cellModel = [self cellModelAtIndexPath:indexPath];
     
     if (cellModel) {
-        Class<ATCellProtocal> cellClass = cellModel.cellClass;
+        Class <ATCellProtocal> cellClass = cellModel.cellClass;
         NSString *identifier = NSStringFromClass(cellClass);
         
-        __kindof UICollectionViewCell<ATCellProtocal> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+        __kindof UICollectionViewCell <ATCellProtocal> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
         if (!cell) {
             [collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
@@ -138,7 +138,7 @@
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
     
-    id <ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:indexPath.section];
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:indexPath.section];
     
     if (sectionObj) {
         __kindof UICollectionReusableView <ATCellProtocal> *view = [self _dequeueReusableSupplementaryViewWithKind:kind atIndexPath:indexPath];
@@ -183,7 +183,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     
-    id <ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
 
     if (sectionObj) {
         return CGSizeMake(sectionObj.headerModel.cellStyle.cellWidth, sectionObj.headerModel.cellHeight);
@@ -194,7 +194,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
     
-    id <ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
         return CGSizeMake(sectionObj.footerModel.cellStyle.cellWidth, sectionObj.footerModel.cellHeight);

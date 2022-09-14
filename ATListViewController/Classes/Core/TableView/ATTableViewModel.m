@@ -12,7 +12,7 @@
 
 #pragma mark - private
 
-- (__kindof UITableViewHeaderFooterView<ATCellProtocal> * _Nonnull )_dequeueReusableHeaderFooterViewWithViewClass:(Class<ATCellProtocal> _Nonnull)viewClass {
+- (__kindof UITableViewHeaderFooterView <ATCellProtocal> * _Nonnull )_dequeueReusableHeaderFooterViewWithViewClass:(Class <ATCellProtocal> _Nonnull)viewClass {
     
     NSString *identifier = NSStringFromClass(viewClass);
     
@@ -23,7 +23,7 @@
     return view;
 }
 
-- (void)_showSeperatorIfNeededInCell:(__kindof UITableViewCell<ATCellProtocal> *)cell
+- (void)_showSeperatorIfNeededInCell:(__kindof UITableViewCell <ATCellProtocal> *)cell
                          atIndexPath:(NSIndexPath *)indexPath {
     
     if (cell.isShowSeperator) {
@@ -62,20 +62,20 @@
 
 #pragma mark - public
 
-- (id <ATSectionProtocal, ATCellModelProtocol> _Nullable)sectionObjectInSection:(NSUInteger)section {
+- (id <ATSectionProtocal> _Nullable)sectionObjectInSection:(NSUInteger)section {
     
     if (section < self.sections.count) {
-        id<ATSectionProtocal, ATCellModelProtocol> sectionObj = [self.sections objectAtIndex:section];
+        id <ATSectionProtocal> sectionObj = [self.sections objectAtIndex:section];
         return sectionObj;
     }
     
     return nil;
 }
 
-- (id <ATSectionProtocal, ATCellModelProtocol> _Nullable)sectionObjectWithIdentifier:(NSString * _Nonnull)identifier {
+- (id <ATSectionProtocal> _Nullable)sectionObjectWithIdentifier:(NSString * _Nonnull)identifier {
     
-    __block id<ATSectionProtocal, ATCellModelProtocol> sectionObj;
-    [self.sections enumerateObjectsUsingBlock:^(id <ATSectionProtocal, ATCellModelProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    __block id <ATSectionProtocal> sectionObj;
+    [self.sections enumerateObjectsUsingBlock:^(id <ATSectionProtocal>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.identifier isEqualToString:identifier]) {
             sectionObj = obj;
             *stop = YES;
@@ -123,10 +123,10 @@
     id <ATCellModelProtocol> cellModel = [self cellModelAtIndexPath:indexPath];
     
     if (cellModel) {
-        Class<ATCellProtocal> cellClass = cellModel.cellClass;
+        Class <ATCellProtocal> cellClass = cellModel.cellClass;
         NSString *identifier = NSStringFromClass(cellClass);
         
-        __kindof UITableViewCell<ATCellProtocal> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        __kindof UITableViewCell <ATCellProtocal> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
             [tableView registerClass:cellClass forCellReuseIdentifier:identifier];
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
@@ -157,10 +157,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    id <ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
-        __kindof UITableViewHeaderFooterView<ATCellProtocal> *view = [self _dequeueReusableHeaderFooterViewWithViewClass:sectionObj.headerModel.cellClass];
+        __kindof UITableViewHeaderFooterView <ATCellProtocal> *view = [self _dequeueReusableHeaderFooterViewWithViewClass:sectionObj.headerModel.cellClass];
         [self _showSeperatorIfNeededInView:view];
         if (view.atDelegate == nil) { view.atDelegate = self.cellAction; }
         view.cellModel = sectionObj.headerModel;
@@ -172,7 +172,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    id <ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
         return sectionObj.headerModel.cellHeight;
@@ -183,10 +183,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     
-    id <ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
-        __kindof UITableViewHeaderFooterView<ATCellProtocal> *view = [self _dequeueReusableHeaderFooterViewWithViewClass:sectionObj.footerModel.cellClass];
+        __kindof UITableViewHeaderFooterView <ATCellProtocal> *view = [self _dequeueReusableHeaderFooterViewWithViewClass:sectionObj.footerModel.cellClass];
         [self _showSeperatorIfNeededInView:view];
         if (view.atDelegate == nil) { view.atDelegate = self.cellAction; }
         view.cellModel = sectionObj.footerModel;
@@ -198,7 +198,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
-    id <ATSectionProtocal, ATCellModelProtocol> sectionObj = [self sectionObjectInSection:section];
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
         return sectionObj.footerModel.cellHeight;

@@ -16,9 +16,4 @@
 @synthesize headerModel = _headerModel;
 @synthesize footerModel = _footerModel;
 
-@synthesize cellClass = _cellClass;
-@synthesize cellData = _cellData;
-@synthesize cellStyle = _cellStyle;
-@synthesize cellHeight = _cellHeight;
-
 @end

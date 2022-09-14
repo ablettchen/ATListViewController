@@ -21,16 +21,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) __kindof UITableView *tableView;
 
 // 列表分组数据
-@property (nonatomic, weak, nullable) NSMutableArray <id <ATSectionProtocal, ATCellModelProtocol>> *sections;
+@property (nonatomic, weak, nullable) NSMutableArray <id <ATSectionProtocal>> *sections;
 
 // cell 点击代理
 @property (nonatomic, weak) id <ATCellActionProtocal> cellAction;
 
 // 根据分组标识取分组对象
-- (id <ATSectionProtocal, ATCellModelProtocol> _Nullable)sectionObjectWithIdentifier:(NSString * _Nonnull)identifier;
+- (id <ATSectionProtocal> _Nullable)sectionObjectWithIdentifier:(NSString * _Nonnull)identifier;
 
 // 根据分组序号取分组对象
-- (id <ATSectionProtocal, ATCellModelProtocol> _Nullable)sectionObjectInSection:(NSUInteger)section;
+- (id <ATSectionProtocal> _Nullable)sectionObjectInSection:(NSUInteger)section;
 
 // 根据 indexPath 取 cellModel
 - (id <ATCellModelProtocol> _Nullable)cellModelAtIndexPath:(NSIndexPath * _Nonnull)indexPath;

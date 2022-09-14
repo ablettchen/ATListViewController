@@ -27,10 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id <UICollectionViewDelegate> delegate;
 
 // cell 点击代理
-- (id<ATCellActionProtocal> _Nullable)cellAction;
+- (id <ATCellActionProtocal> _Nullable)cellAction;
 
 // 列表分组数据
-@property (nonatomic, strong, nonnull) NSMutableArray <id<ATSectionProtocal, ATCellModelProtocol>> *sections;
+@property (nonatomic, strong, nonnull) NSMutableArray <id <ATSectionProtocal>> *sections;
 
 // 列表数据处理
 @property (nonatomic, strong, readonly, nonnull) __kindof ATCollectionViewModel *collectionViewModel;
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 结束加载
 - (void)finished:(NSError * _Nullable)error
-         section:(NSArray <id<ATSectionProtocal, ATCellModelProtocol>> *)sections
+         section:(NSArray <id <ATSectionProtocal>> *)sections
       nextPageId:(NSString * _Nullable)nextPageId;
 
 
