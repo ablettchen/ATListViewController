@@ -27,8 +27,9 @@
         
         if (viewClass) {
             NSString *identifier = NSStringFromClass(viewClass);
+            [self.collectionView registerClass:viewClass forSupplementaryViewOfKind:kind withReuseIdentifier:identifier];
+            
             __kindof UICollectionReusableView <ATCellProtocal> *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-            if (!view) { [self.collectionView registerClass:viewClass forSupplementaryViewOfKind:kind withReuseIdentifier:identifier]; }
             view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
             return view;
         }
@@ -118,13 +119,9 @@
     if (cellModel) {
         Class <ATCellProtocal> cellClass = cellModel.cellClass;
         NSString *identifier = NSStringFromClass(cellClass);
+        [collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
         
         __kindof UICollectionViewCell <ATCellProtocal> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-        if (!cell) {
-            [collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
-            cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-        }
-        
         if (cell.atDelegate == nil) { cell.atDelegate = self.cellAction; }
         cell.cellModel = cellModel;
         return cell;
@@ -146,6 +143,7 @@
             [self _showSeperatorIfNeededInView:view];
             if (view.atDelegate == nil) { view.atDelegate = self.cellAction; }
             view.cellModel = sectionObj.headerModel;
+            return view;
         }
     }
     

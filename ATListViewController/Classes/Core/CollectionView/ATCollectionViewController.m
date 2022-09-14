@@ -34,13 +34,27 @@
     if (!_atCollectionView) {
         _atCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
                                                collectionViewLayout:self.atCollectionViewLayout];
+        _atCollectionView.backgroundColor = UIColor.atFromHex(0xf4f4f4);
+        CGFloat bottonInset = 0;
+        if (@available(iOS 11.0, *)) {
+            bottonInset = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets.bottom;
+        }
+        _atCollectionView.contentInset = UIEdgeInsetsMake(0, 0, bottonInset, 0);
+        _atCollectionView.dataSource = self.dataSource;
+        _atCollectionView.delegate = self.delegate;
+        
     }
     return _atCollectionView;
+}
+
+- (enum UICollectionViewScrollDirection)scrollDirection {
+    return UICollectionViewScrollDirectionVertical;
 }
 
 - (__kindof UICollectionViewFlowLayout *)atCollectionViewLayout {
     if (!_atCollectionViewLayout) {
         _atCollectionViewLayout = UICollectionViewFlowLayout.new;
+        _atCollectionViewLayout.scrollDirection = self.scrollDirection;
     }
     return _atCollectionViewLayout;
 }

@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id <ATCellActionProtocal> atDelegate;
 @end
 
-
 @interface UITableViewHeaderFooterView (ATListViewController)
 @property (nonatomic, weak, nullable) id <ATCellActionProtocal> atDelegate;
 @end

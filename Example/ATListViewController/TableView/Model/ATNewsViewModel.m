@@ -7,9 +7,14 @@
 //
 
 #import "ATNewsViewModel.h"
+#import "ATNews.h"
+
 #import "ATNewsTableViewCell.h"
 #import "ATNewsTableSectionHeaderView.h"
-#import "ATNews.h"
+
+#import "ATNewsCollectionViewCell.h"
+#import "ATNewsCollectionSectionHeaderView.h"
+
 
 
 NS_INLINE id fetchFakeData(NSString *resource) {
@@ -41,8 +46,8 @@ NS_INLINE id fetchFakeData(NSString *resource) {
 
 @implementation ATNewsViewModel
 
-- (void)requestData:(NSDictionary * _Nonnull)params
-         completion:(void(^ _Nonnull)(NSError * _Nullable error, NSArray <id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId))completion {
+- (void)requesTabletData:(NSDictionary * _Nonnull)params
+              completion:(void(^ _Nonnull)(NSError * _Nullable error, NSArray <id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId))completion {
     
     [self _requestNewsData:params
                 completion:^(NSError * _Nullable error, ATList * _Nullable list) {
@@ -114,6 +119,80 @@ NS_INLINE id fetchFakeData(NSString *resource) {
     }];
 }
 
+
+- (void)requesCollectionData:(NSDictionary * _Nonnull)params
+                  completion:(void(^ _Nonnull)(NSError * _Nullable error, NSArray <id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId))completion {
+    
+    [self _requestNewsData:params
+                completion:^(NSError * _Nullable error, ATList * _Nullable list) {
+        
+        NSString *nextId = [params valueForKey:@"nextId"];
+        BOOL isFirstPage = nextId == nil || nextId.length == 0;
+        
+        ATSection *sectionObj = [ATSection new];
+        sectionObj.identifier = isFirstPage ? @"1" : @"2";
+        sectionObj.section = isFirstPage ? 0 : 1;
+        sectionObj.isPageList = list.lastPage;
+        
+        NSMutableArray<id <ATCellModelProtocol>> *cellModels = [NSMutableArray array];
+        
+        [list.data enumerateObjectsUsingBlock:^(ATNews * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+
+            
+            ATNewsCellModel *cellModel = ATNewsCellModel.new;
+            cellModel.cellClass = ATNewsCollectionViewCell.class;
+            cellModel.cellData = obj;
+            
+            ATNewsStyle *style = ATNewsStyle.new;
+            
+            CGFloat titleWidth = style.cellWidth = style.cellWidth - style.titleInsets.left - style.titleInsets.right;
+            CGFloat titleHeight = [obj.title boundingRectWithSize:CGSizeMake(titleWidth, HUGE)
+                                                          options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                       attributes:@{NSFontAttributeName: style.titleFont} context:nil].size.height;
+            
+            CGFloat cellHeight = 0;
+            cellHeight += style.titleInsets.top;
+            cellHeight += ceil(titleHeight);
+            cellHeight += style.titleInsets.bottom;
+            
+            cellModel.cellStyle = style;
+            cellModel.cellHeight = cellHeight;
+            
+            [cellModels addObject:cellModel];
+        }];
+        
+        sectionObj.cellModels = cellModels;
+        
+        
+        {
+            ATCellStyle *style = ATCellStyle.new;
+            style.cellWidth = UIScreen.mainScreen.bounds.size.width;
+            
+            ATCellModel *cellModel = ATCellModel.new;
+            cellModel.cellData = isFirstPage? @"section header 0" : @"section header 1";
+            cellModel.cellClass = ATNewsCollectionSectionHeaderView.class;
+            cellModel.cellStyle = style;
+            cellModel.cellHeight = 60.f;
+            sectionObj.headerModel = cellModel;
+        }
+        
+        {
+            ATCellStyle *style = ATCellStyle.new;
+            style.cellWidth = UIScreen.mainScreen.bounds.size.width;
+            
+            ATCellModel *cellModel = ATCellModel.new;
+            cellModel.cellData = isFirstPage ? @"section footer 0" : @"section footer 1";
+            cellModel.cellClass = ATNewsCollectionSectionFooterView.class;
+            cellModel.cellStyle = style;
+            cellModel.cellHeight = 30.f;
+            sectionObj.footerModel = cellModel;
+        }
+        
+        completion(nil, @[sectionObj], list.lastPage ? nil : list.nextId);
+        
+    }];
+    
+}
 
 - (void)_requestNewsData:(NSDictionary * _Nonnull)params
          completion:(void(^ _Nonnull)(NSError * _Nullable error, ATList * _Nullable list))completion {

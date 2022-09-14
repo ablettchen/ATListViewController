@@ -32,8 +32,6 @@
 - (__kindof UITableView *)atTableView {
     if (!_atTableView) {
         _atTableView = [[UITableView alloc] initWithFrame:CGRectZero style:self.style];
-        _atTableView.dataSource = self.dataSource;
-        _atTableView.delegate = self.delegate;
         _atTableView.backgroundColor = UIColor.atFromHex(0xf4f4f4);
         _atTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _atTableView.estimatedRowHeight = 0;
@@ -42,6 +40,8 @@
         if (@available(iOS 15.0, *)) {
             [UITableView appearance].sectionHeaderTopPadding = 0.f;
         }
+        _atTableView.dataSource = self.dataSource;
+        _atTableView.delegate = self.delegate;
     }
     return _atTableView;
 }

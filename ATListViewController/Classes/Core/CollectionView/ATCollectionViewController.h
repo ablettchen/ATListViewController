@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 列表视图
 @property (nonatomic, strong, readonly, nonnull) __kindof UICollectionView *atCollectionView;
 
+// 滚动方向
+@property (nonatomic, assign, readonly) enum UICollectionViewScrollDirection scrollDirection;
+
 // 列表布局
 @property (nonatomic, strong, readonly, nonnull) __kindof UICollectionViewFlowLayout *atCollectionViewLayout;
 

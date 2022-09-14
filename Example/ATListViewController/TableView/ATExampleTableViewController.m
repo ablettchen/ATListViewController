@@ -19,13 +19,31 @@
 
 #pragma mark - override
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self _prepareView];
+    [self _prepareData];
+}
+
 - (enum UITableViewStyle)style {
     return UITableViewStyleGrouped;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (id <ATCellActionProtocal>)cellAction {
+    return self;
+}
+
+#pragma mark - public
+
+#pragma mark - private
+
+- (void)_prepareView {
+    
     self.view.backgroundColor = UIColor.whiteColor;
+}
+
+- (void)_prepareData {
     
     __weak typeof(self) wSelf = self;
     
@@ -35,32 +53,13 @@
     
     [self.atTableView atLoadData:^(ATDataLoader * _Nonnull loader) {
         
-        [wSelf.viewModel requestData:loader.rangeDic
-                          completion:^(NSError * _Nullable error, NSArray<id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId) {
+        [wSelf.viewModel requesTabletData:loader.rangeDic
+                               completion:^(NSError * _Nullable error, NSArray<id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId) {
             [wSelf finished:error section:datas nextPageId:nextId];
         }];
         
     }];
 }
-
-- (id <ATCellActionProtocal>)cellAction {
-    return self;
-}
-
-- (void)atCell:(__kindof id <ATCellProtocal>)cell action:(NSUInteger)action {
-    
-    if ([cell.cellModel isKindOfClass:ATNewsCellModel.class]) {
-        ATNewsCellModel *cellModel = cell.cellModel;
-        NSLog(@"%tu - %@", action, cellModel.cellData.title);
-    }else if ([cell.cellModel isKindOfClass:ATCellModel.class]) {
-        ATCellModel *cellModel = cell.cellModel;
-        NSLog(@"%tu - %@", action, cellModel.cellData);
-    }
-}
-
-#pragma mark - public
-
-#pragma mark - private
 
 #pragma mark - getter
 
@@ -71,6 +70,19 @@
         _viewModel = ATNewsViewModel.new;
     }
     return _viewModel;
+}
+
+#pragma mark - ATCellActionProtocal
+
+- (void)atCell:(__kindof id <ATCellProtocal>)cell action:(NSUInteger)action {
+    
+    if ([cell.cellModel isKindOfClass:ATNewsCellModel.class]) {
+        ATNewsCellModel *cellModel = cell.cellModel;
+        NSLog(@"%tu - %@", action, cellModel.cellData.title);
+    }else if ([cell.cellModel isKindOfClass:ATCellModel.class]) {
+        ATCellModel *cellModel = cell.cellModel;
+        NSLog(@"%tu - %@", action, cellModel.cellData);
+    }
 }
 
 @end
