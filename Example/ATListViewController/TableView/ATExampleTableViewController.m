@@ -11,7 +11,7 @@
 #import "ATNews.h"
 
 
-@interface ATExampleTableViewController ()
+@interface ATExampleTableViewController ()<ATCellActionProtocal>
 @property (nonatomic, strong) ATNewsViewModel *viewModel;
 @end
 

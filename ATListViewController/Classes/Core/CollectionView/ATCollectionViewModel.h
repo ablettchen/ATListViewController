@@ -1,5 +1,5 @@
 //
-//  ATTableViewModel.h
+//  ATCollectionViewModel.h
 //  ATListViewController
 //
 //  Created by ablett on 2022/9/14.
@@ -10,15 +10,16 @@
 #import "ATListViewControllerExtensions.h"
 #import <ATDataLoader/ATDataLoader.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATTableViewModel : NSObject<UITableViewDataSource, UITableViewDelegate>
+@interface ATCollectionViewModel : NSObject<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 // 视图
 @property (nonatomic, weak, nullable) UIView *view;
 
 // 列表视图
-@property (nonatomic, weak, nullable) __kindof UITableView *tableView;
+@property (nonatomic, weak, nullable) __kindof UICollectionView *collectionView;
 
 // 列表分组数据
 @property (nonatomic, weak, nullable) NSMutableArray <id <ATSectionProtocal, ATCellModelProtocol>> *sections;

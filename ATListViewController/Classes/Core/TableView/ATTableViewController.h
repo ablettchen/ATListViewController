@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATTableViewController : UIViewController<ATCellActionProtocal>
+@interface ATTableViewController : UIViewController
 
 // 列表视图
 @property (nonatomic, strong, readonly, nonnull) __kindof UITableView *atTableView;

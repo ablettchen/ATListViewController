@@ -12,11 +12,11 @@
 
 #pragma mark - private
 
-- (__kindof UITableViewHeaderFooterView<ATCellProtocal> * _Nullable )_dequeueReusableHeaderFooterViewWithViewClass:(Class<ATCellProtocal> _Nonnull)viewClass {
+- (__kindof UITableViewHeaderFooterView<ATCellProtocal> * _Nonnull )_dequeueReusableHeaderFooterViewWithViewClass:(Class<ATCellProtocal> _Nonnull)viewClass {
     
     NSString *identifier = NSStringFromClass(viewClass);
     
-    __kindof UITableViewHeaderFooterView<ATCellProtocal> *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+    __kindof UITableViewHeaderFooterView <ATCellProtocal> *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     if (!view) { [self.tableView registerClass:viewClass forHeaderFooterViewReuseIdentifier:identifier]; } else { return view; }
     view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     

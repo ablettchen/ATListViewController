@@ -11,7 +11,7 @@
 
 @interface ATTableViewController ()
 @property (nonatomic, strong) __kindof UITableView *atTableView;
-@property (nonatomic, strong) ATTableViewModel *tableViewModel;
+@property (nonatomic, strong) __kindof ATTableViewModel *tableViewModel;
 @property (nonatomic, strong) __kindof ATTableViewHandler *tableViewHandler;
 @end
 

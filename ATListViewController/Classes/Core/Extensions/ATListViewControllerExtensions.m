@@ -46,3 +46,16 @@
 }
 
 @end
+
+
+@implementation UICollectionReusableView (ATListViewController)
+
+- (void)setAtDelegate:(id <ATCellActionProtocal>)atDelegate {
+    objc_setAssociatedObject(self, @selector(atDelegate), atDelegate, OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (id <ATCellActionProtocal>)atDelegate {
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+@end

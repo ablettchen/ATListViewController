@@ -36,7 +36,9 @@
 
 - (void)_buttonAction:(UIButton *)sender {
     
-    [self.navigationController pushViewController:ATExampleTableViewController.new animated:YES];
+    __kindof UIViewController *vc = ATExampleTableViewController.new;
+    vc.navigationItem.title = [sender titleForState:UIControlStateNormal];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

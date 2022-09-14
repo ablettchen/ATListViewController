@@ -10,6 +10,7 @@
 		194B713C28D0204A00A792D2 /* NewsP1.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 194B713A28D0204A00A792D2 /* NewsP1.JSON */; };
 		194B713D28D0204A00A792D2 /* NewsP2.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 194B713B28D0204A00A792D2 /* NewsP2.JSON */; };
 		194B714328D0403B00A792D2 /* NewsP3.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 194B714228D0403B00A792D2 /* NewsP3.JSON */; };
+		197C1A9E28D1CF990099842C /* ATExampleCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 197C1A9D28D1CF990099842C /* ATExampleCollectionViewController.m */; };
 		19D546F428CB25C400FB8263 /* ATExampleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D546F328CB25C400FB8263 /* ATExampleTableViewController.m */; };
 		19D546FB28CB298700FB8263 /* ATNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D546FA28CB298700FB8263 /* ATNewsTableViewCell.m */; };
 		19D5470228CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470128CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m */; };
@@ -48,6 +49,8 @@
 		194B713A28D0204A00A792D2 /* NewsP1.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewsP1.JSON; sourceTree = "<group>"; };
 		194B713B28D0204A00A792D2 /* NewsP2.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewsP2.JSON; sourceTree = "<group>"; };
 		194B714228D0403B00A792D2 /* NewsP3.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewsP3.JSON; sourceTree = "<group>"; };
+		197C1A9C28D1CF990099842C /* ATExampleCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATExampleCollectionViewController.h; sourceTree = "<group>"; };
+		197C1A9D28D1CF990099842C /* ATExampleCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATExampleCollectionViewController.m; sourceTree = "<group>"; };
 		19D546F228CB25C400FB8263 /* ATExampleTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATExampleTableViewController.h; sourceTree = "<group>"; };
 		19D546F328CB25C400FB8263 /* ATExampleTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATExampleTableViewController.m; sourceTree = "<group>"; };
 		19D546F928CB298700FB8263 /* ATNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATNewsTableViewCell.h; sourceTree = "<group>"; };
@@ -124,6 +127,23 @@
 				194B714228D0403B00A792D2 /* NewsP3.JSON */,
 			);
 			path = FakeJSON;
+			sourceTree = "<group>";
+		};
+		197C1A9F28D1CFAA0099842C /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				197C1AA028D1CFB10099842C /* Controller */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		197C1AA028D1CFB10099842C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				197C1A9C28D1CF990099842C /* ATExampleCollectionViewController.h */,
+				197C1A9D28D1CF990099842C /* ATExampleCollectionViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		19D5470428CB3FF600FB8263 /* TableView */ = {
@@ -210,6 +230,7 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* ATViewController.h */,
 				6003F5A6195388D20070C39A /* ATViewController.m */,
+				197C1A9F28D1CFAA0099842C /* CollectionView */,
 				19D5470428CB3FF600FB8263 /* TableView */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
@@ -456,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19D5470928CB405900FB8263 /* ATNews.m in Sources */,
+				197C1A9E28D1CF990099842C /* ATExampleCollectionViewController.m in Sources */,
 				19D546FB28CB298700FB8263 /* ATNewsTableViewCell.m in Sources */,
 				6003F59E195388D20070C39A /* ATAppDelegate.m in Sources */,
 				19D5470228CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m in Sources */,
