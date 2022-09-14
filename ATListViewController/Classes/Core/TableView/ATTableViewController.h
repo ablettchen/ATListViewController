@@ -6,14 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ATSectionProtocal.h"
-#import "ATListViewControllerExtensions.h"
-#import <ATDataLoader/ATDataLoader.h>
+#import "ATTableViewModel.h"
+#import "ATTableViewHandler.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ATCellActionProtocal>
+@interface ATTableViewController : UIViewController<ATCellActionProtocal>
 
 // 列表视图
 @property (nonatomic, strong, readonly, nonnull) __kindof UITableView *atTableView;
@@ -21,20 +20,24 @@ NS_ASSUME_NONNULL_BEGIN
 // 列表样式
 @property (nonatomic, assign, readonly) enum UITableViewStyle style;
 
+// 列表数据源
+@property (nonatomic, weak, nullable) id <UITableViewDataSource> dataSource;
+
+// 列表代理
+@property (nonatomic, weak, nullable) id <UITableViewDelegate> delegate;
+
+// cell 点击代理
+- (id<ATCellActionProtocal> _Nullable)cellAction;
+
 // 列表分组数据
 @property (nonatomic, strong, nonnull) NSMutableArray <id<ATSectionProtocal, ATCellModelProtocol>> *sections;
 
-// 根据分组标识取分组对象
-- (id<ATSectionProtocal, ATCellModelProtocol> _Nullable)sectionObjectWithIdentifier:(NSString * _Nonnull)identifier;
+// 列表数据处理
+@property (nonatomic, strong, readonly, nonnull) __kindof ATTableViewModel *tableViewModel;
 
-// 根据分组序号取分组对象
-- (id<ATSectionProtocal, ATCellModelProtocol> _Nullable)sectionObjectInSection:(NSUInteger)section;
+// 列表事件处理
+@property (nonatomic, strong, readonly, nonnull) __kindof ATTableViewHandler *tableViewHandler;
 
-// 根据 indexPath 取 cellModel
-- (id<ATCellModelProtocol> _Nullable)cellModelAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
-
-// cell 点击代理
-- (id<ATCellActionProtocal> _Nullable)cellDelegate;
 
 // 结束加载
 - (void)finished:(NSError * _Nullable)error

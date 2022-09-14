@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 
 // cell Model
-@property (nonatomic, strong, nullable) id<ATCellModelProtocol> cellModel;
+@property (nonatomic, strong, nullable) id <ATCellModelProtocol> cellModel;
 
 
 @optional
@@ -55,13 +55,13 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 
 // cell 类
-@property (nonatomic, strong, nonnull) Class<ATCellProtocal> cellClass;
+@property (nonatomic, strong, nonnull) Class <ATCellProtocal> cellClass;
 
 // cell 数据
 @property (nonatomic, strong, nonnull) id cellData;
 
 // cell 样式
-@property (nonatomic, strong) id<ATCellStyleProtocal> cellStyle;
+@property (nonatomic, strong) id <ATCellStyleProtocal> cellStyle;
 
 // cell 高度
 @property (nonatomic, assign) CGFloat cellHeight;
@@ -76,8 +76,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
-// 点击事件
-- (void)atCell:(__kindof id<ATCellProtocal>)cell action:(NSUInteger)action;
+// 点击事件 action:事件类型
+- (void)atCell:(__kindof id <ATCellProtocal>)cell action:(NSUInteger)action;
+
+// 点击cell
+- (void)didSelect:(id <ATCellModelProtocol>)cellModel atCell:(__kindof id <ATCellProtocal>)cell;
 
 @end
 

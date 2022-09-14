@@ -11,11 +11,11 @@
 
 @implementation UITableViewCell (ATListViewController)
 
-- (void)setAtDelegate:(id<ATCellActionProtocal>)atDelegate {
+- (void)setAtDelegate:(id <ATCellActionProtocal>)atDelegate {
     objc_setAssociatedObject(self, @selector(atDelegate), atDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id<ATCellActionProtocal>)atDelegate {
+- (id <ATCellActionProtocal>)atDelegate {
     return objc_getAssociatedObject(self, _cmd);
 }
 
@@ -24,11 +24,11 @@
 
 @implementation UITableViewHeaderFooterView (ATListViewController)
 
-- (void)setAtDelegate:(id<ATCellActionProtocal>)atDelegate {
+- (void)setAtDelegate:(id <ATCellActionProtocal>)atDelegate {
     objc_setAssociatedObject(self, @selector(atDelegate), atDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id<ATCellActionProtocal>)atDelegate {
+- (id <ATCellActionProtocal>)atDelegate {
     return objc_getAssociatedObject(self, _cmd);
 }
 
@@ -37,11 +37,11 @@
 
 @implementation UICollectionViewCell (ATListViewController)
 
-- (void)setAtDelegate:(id<ATCellActionProtocal>)atDelegate {
+- (void)setAtDelegate:(id <ATCellActionProtocal>)atDelegate {
     objc_setAssociatedObject(self, @selector(atDelegate), atDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id<ATCellActionProtocal>)atDelegate {
+- (id <ATCellActionProtocal>)atDelegate {
     return objc_getAssociatedObject(self, _cmd);
 }
 

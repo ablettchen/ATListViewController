@@ -28,7 +28,7 @@
 
 #pragma mark - public
 
-- (void)setCellModel:(id<ATCellModelProtocol>)cellModel {
+- (void)setCellModel:(id <ATCellModelProtocol>)cellModel {
     _cellModel = cellModel;
 }
 

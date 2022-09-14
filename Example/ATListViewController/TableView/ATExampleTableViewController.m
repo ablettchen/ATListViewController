@@ -36,14 +36,18 @@
     [self.atTableView atLoadData:^(ATDataLoader * _Nonnull loader) {
         
         [wSelf.viewModel requestData:loader.rangeDic
-                          completion:^(NSError * _Nullable error, NSArray<id<ATSectionProtocal,ATCellModelProtocol>> * _Nullable datas, NSString * _Nullable nextId) {
+                          completion:^(NSError * _Nullable error, NSArray<id<ATSectionProtocal, ATCellModelProtocol>> * _Nullable datas, NSString * _Nullable nextId) {
             [wSelf finished:error section:datas nextPageId:nextId];
         }];
         
     }];
 }
 
-- (void)atCell:(__kindof id<ATCellProtocal>)cell action:(NSUInteger)action {
+- (id <ATCellActionProtocal>)cellAction {
+    return self;
+}
+
+- (void)atCell:(__kindof id <ATCellProtocal>)cell action:(NSUInteger)action {
     
     if ([cell.cellModel isKindOfClass:ATNewsCellModel.class]) {
         ATNewsCellModel *cellModel = cell.cellModel;
