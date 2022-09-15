@@ -13,6 +13,6 @@
 
 - (void)atCell:(__kindof id <ATCellProtocal>)cell action:(NSUInteger)action {}
 
-- (void)didSelect:(id <ATCellModelProtocol>)cellModel atCell:(__kindof id <ATCellProtocal>)cell {}
+- (void)atCell:(__kindof id <ATCellProtocal>)cell didSelect:(id <ATCellModelProtocol>)cellModel {}
 
 @end

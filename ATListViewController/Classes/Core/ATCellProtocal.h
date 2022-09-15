@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)atCell:(__kindof id <ATCellProtocal>)cell action:(NSUInteger)action;
 
 // 点击cell
-- (void)didSelect:(id <ATCellModelProtocol>)cellModel atCell:(__kindof id <ATCellProtocal>)cell;
+- (void)atCell:(__kindof id <ATCellProtocal>)cell didSelect:(id <ATCellModelProtocol>)cellModel;
 
 @end
 

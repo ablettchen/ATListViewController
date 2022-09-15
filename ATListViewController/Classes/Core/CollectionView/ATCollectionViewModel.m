@@ -204,10 +204,10 @@ forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind
     
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     id <ATCellModelProtocol> cellModel = [self cellModelAtIndexPath:indexPath];
-    if ([self.cellAction respondsToSelector:@selector(didSelect:atCell:)]) {
+    if ([self.cellAction respondsToSelector:@selector(atCell:didSelect:)]) {
         __kindof UICollectionViewCell *cell = [self collectionView:collectionView cellForItemAtIndexPath:indexPath];
         if ([cell.class conformsToProtocol:@protocol(ATCellProtocal)]) {
-            [self.cellAction didSelect:cellModel atCell:cell];
+            [self.cellAction atCell:cell didSelect:cellModel];
         }
     }
 }
