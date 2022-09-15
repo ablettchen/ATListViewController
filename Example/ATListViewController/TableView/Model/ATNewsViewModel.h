@@ -13,12 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ATNewsViewModel : NSObject
 
-- (void)requesTabletData:(NSDictionary * _Nonnull)params
-              completion:(void(^ _Nonnull)(NSError * _Nullable error, NSArray <id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId))completion;
-
-
-- (void)requesCollectionData:(NSDictionary * _Nonnull)params
-                  completion:(void(^ _Nonnull)(NSError * _Nullable error, NSArray <id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId))completion;
+- (void)requesNewsData:(NSDictionary * _Nonnull)params
+            completion:(void(^ _Nonnull)(NSError * _Nullable error, NSArray <id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId))completion;
 
 @end
 

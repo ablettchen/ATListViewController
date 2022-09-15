@@ -1,20 +1,20 @@
 //
-//  ATNewsCollectionSectionHeaderView.m
+//  ATAlbumCollectionSectionHeaderView.m
 //  ATListViewController_Example
 //
 //  Created by ablett on 2022/9/14.
 //  Copyright © 2022 ablett. All rights reserved.
 //
 
-#import "ATNewsCollectionSectionHeaderView.h"
+#import "ATAlbumCollectionSectionHeaderView.h"
 #import <Masonry/Masonry.h>
 
 
-@interface ATNewsCollectionSectionHeaderView ()
+@interface ATAlbumCollectionSectionHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *moreButton;
 @end
-@implementation ATNewsCollectionSectionHeaderView
+@implementation ATAlbumCollectionSectionHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -98,10 +98,10 @@
 @end
 
 
-@interface ATNewsCollectionSectionFooterView ()
+@interface ATAlbumCollectionSectionFooterView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @end
-@implementation ATNewsCollectionSectionFooterView
+@implementation ATAlbumCollectionSectionFooterView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];

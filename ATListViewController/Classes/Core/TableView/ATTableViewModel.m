@@ -10,6 +10,46 @@
 
 @implementation ATTableViewModel
 
+#pragma mark - public
+
+- (id <ATSectionProtocal> _Nullable)sectionObjectInSection:(NSUInteger)section {
+    
+    if (section < self.sections.count) {
+        id <ATSectionProtocal> sectionObj = [self.sections objectAtIndex:section];
+        return sectionObj;
+    }
+    
+    return nil;
+}
+
+- (id <ATSectionProtocal> _Nullable)sectionObjectWithIdentifier:(NSString * _Nonnull)identifier {
+    
+    __block id <ATSectionProtocal> sectionObj;
+    [self.sections enumerateObjectsUsingBlock:^(id <ATSectionProtocal>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.identifier isEqualToString:identifier]) {
+            sectionObj = obj;
+            *stop = YES;
+        }
+    }];
+    
+    return sectionObj;
+}
+
+- (id <ATCellModelProtocol> _Nullable)cellModelAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
+    
+    if (indexPath.section < self.sections.count) {
+        id <ATSectionProtocal> sectionObj = [self.sections objectAtIndex:indexPath.section];
+        
+        if (indexPath.row < sectionObj.cellModels.count) {
+            
+            id <ATCellModelProtocol> cellModel = [sectionObj.cellModels objectAtIndex:indexPath.row];
+            return cellModel;
+        }
+    }
+    
+    return nil;
+}
+
 #pragma mark - private
 
 - (__kindof UITableViewHeaderFooterView <ATCellProtocal> * _Nonnull )_dequeueReusableHeaderFooterViewWithViewClass:(Class <ATCellProtocal> _Nonnull)viewClass {
@@ -59,47 +99,6 @@
         }
     }
 }
-
-#pragma mark - public
-
-- (id <ATSectionProtocal> _Nullable)sectionObjectInSection:(NSUInteger)section {
-    
-    if (section < self.sections.count) {
-        id <ATSectionProtocal> sectionObj = [self.sections objectAtIndex:section];
-        return sectionObj;
-    }
-    
-    return nil;
-}
-
-- (id <ATSectionProtocal> _Nullable)sectionObjectWithIdentifier:(NSString * _Nonnull)identifier {
-    
-    __block id <ATSectionProtocal> sectionObj;
-    [self.sections enumerateObjectsUsingBlock:^(id <ATSectionProtocal>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.identifier isEqualToString:identifier]) {
-            sectionObj = obj;
-            *stop = YES;
-        }
-    }];
-    
-    return sectionObj;
-}
-
-- (id <ATCellModelProtocol> _Nullable)cellModelAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
-    
-    if (indexPath.section < self.sections.count) {
-        id <ATSectionProtocal> sectionObj = [self.sections objectAtIndex:indexPath.section];
-        
-        if (indexPath.row < sectionObj.cellModels.count) {
-            
-            id <ATCellModelProtocol> cellModel = [sectionObj.cellModels objectAtIndex:indexPath.row];
-            return cellModel;
-        }
-    }
-    
-    return nil;
-}
-
 
 #pragma mark - UITableViewDataSource
 

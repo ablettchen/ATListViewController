@@ -47,7 +47,7 @@
 }
 
 - (BOOL)isShowSeperator {
-    return YES;
+    return NO;
 }
 
 - (BOOL)isHideLastSeperator {

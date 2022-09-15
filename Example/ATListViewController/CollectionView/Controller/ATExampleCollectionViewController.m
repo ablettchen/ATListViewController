@@ -7,12 +7,12 @@
 //
 
 #import "ATExampleCollectionViewController.h"
-#import "ATNewsViewModel.h"
-#import "ATNews.h"
+#import "ATAlbumViewModel.h"
+#import "ATAlbum.h"
 
 
 @interface ATExampleCollectionViewController ()<ATCellActionProtocal>
-@property (nonatomic, strong) ATNewsViewModel *viewModel;
+@property (nonatomic, strong) ATAlbumViewModel *viewModel;
 @end
 
 @implementation ATExampleCollectionViewController
@@ -37,6 +37,8 @@
 - (void)_prepareView {
     
     self.view.backgroundColor = UIColor.whiteColor;
+    CGFloat spacing = ATAlbumStyle.spacing;
+    self.atCollectionView.contentInset = UIEdgeInsetsMake(0, spacing, 0, spacing);
 }
 
 - (void)_prepareData {
@@ -49,19 +51,18 @@
     
     [self.atCollectionView atLoadData:^(ATDataLoader * _Nonnull loader) {
         
-        [wSelf.viewModel requesCollectionData:loader.rangeDic
-                                   completion:^(NSError * _Nullable error, NSArray<id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId) {
+        [wSelf.viewModel requesAlbumData:loader.rangeDic
+                              completion:^(NSError * _Nullable error, NSArray<id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId) {
             [wSelf finished:error section:datas nextPageId:nextId];
         }];
-        
     }];
 }
 
 #pragma mark - getter
 
-- (ATNewsViewModel *)viewModel {
+- (ATAlbumViewModel *)viewModel {
     if (!_viewModel) {
-        _viewModel = ATNewsViewModel.new;
+        _viewModel = ATAlbumViewModel.new;
     }
     return _viewModel;
 }
@@ -72,9 +73,9 @@
 
 - (void)atCell:(__kindof id <ATCellProtocal>)cell action:(NSUInteger)action {
     
-    if ([cell.cellModel isKindOfClass:ATNewsCellModel.class]) {
-        ATNewsCellModel *cellModel = cell.cellModel;
-        NSLog(@"%tu - %@", action, cellModel.cellData.title);
+    if ([cell.cellModel isKindOfClass:ATAlbumCellModel.class]) {
+        ATAlbumCellModel *cellModel = cell.cellModel;
+        NSLog(@"%tu - %@", action, cellModel.cellData.url);
     }else if ([cell.cellModel isKindOfClass:ATCellModel.class]) {
         ATCellModel *cellModel = cell.cellModel;
         NSLog(@"%tu - %@", action, cellModel.cellData);

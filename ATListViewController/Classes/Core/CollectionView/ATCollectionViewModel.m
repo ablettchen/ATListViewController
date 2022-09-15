@@ -8,51 +8,12 @@
 #import "ATCollectionViewModel.h"
 #import <Masonry/Masonry.h>
 
+
+@interface ATCollectionViewModel ()
+@property (nonatomic, strong) NSMutableDictionary <NSString *, Class> *registerPool;
+@end
+
 @implementation ATCollectionViewModel
-
-#pragma mark - private
-
-
-- (__kindof UICollectionReusableView <ATCellProtocal> * _Nullable)_dequeueReusableSupplementaryViewWithKind:(NSString * _Nullable)kind atIndexPath:(NSIndexPath *)indexPath {
-    
-    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:indexPath.section];
-    
-    if (sectionObj) {
-        Class viewClass;
-        if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-            viewClass = sectionObj.headerModel.cellClass;
-        }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-            viewClass = sectionObj.footerModel.cellClass;
-        }
-        
-        if (viewClass) {
-            NSString *identifier = NSStringFromClass(viewClass);
-            [self.collectionView registerClass:viewClass forSupplementaryViewOfKind:kind withReuseIdentifier:identifier];
-            
-            __kindof UICollectionReusableView <ATCellProtocal> *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-            view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-            return view;
-        }
-    }
-    
-    return nil;
-}
-
-- (void)_showSeperatorIfNeededInView:(__kindof UICollectionReusableView <ATCellProtocal> *)view {
-    
-    if (view.isShowSeperator) {
-        if (view.seperator) {
-            if (view.seperator.superview == nil) {
-                [view addSubview:view.seperator];
-                [view.seperator mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.bottom.right.equalTo(view).insets(view.seperatorInsets);
-                    make.height.mas_equalTo(0.5);
-                }];
-            }
-        }
-    }
-}
-
 
 #pragma mark - public
 
@@ -94,6 +55,93 @@
     return nil;
 }
 
+#pragma mark - private
+
+- (void)_registerClass:(Class _Nonnull)cellClass {
+    
+    NSString *idr = NSStringFromClass(cellClass);
+    [self _registerClass:cellClass forCellWithReuseIdentifier:idr];
+}
+
+- (void)_registerClass:(Class _Nonnull)cellClass forCellWithReuseIdentifier:(NSString * _Nonnull)identifier {
+    
+    id obj = [self.registerPool objectForKey:identifier];
+    if (obj == nil) {
+        [self.collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
+        [self.registerPool setValue:cellClass forKey:identifier];
+    }
+}
+
+- (void)_registerClass:(Class _Nonnull)viewClass forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind {
+    
+    NSString *idr = NSStringFromClass(viewClass);
+    [self _registerClass:viewClass forSupplementaryViewOfKind:elementKind withReuseIdentifier:idr];
+}
+
+- (void)    _registerClass:(Class _Nonnull)viewClass
+forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind
+       withReuseIdentifier:(NSString * _Nonnull)identifier {
+    
+    NSString *idr = [elementKind stringByAppendingString:identifier];
+    
+    id obj = [self.registerPool objectForKey:idr];
+    if (obj == nil) {
+        [self.collectionView registerClass:viewClass
+                forSupplementaryViewOfKind:elementKind
+                       withReuseIdentifier:identifier];
+        [self.registerPool setValue:viewClass forKey:idr];
+    }
+}
+
+- (__kindof UICollectionReusableView <ATCellProtocal> * _Nullable)_dequeueReusableSupplementaryViewWithKind:(NSString * _Nullable)kind atIndexPath:(NSIndexPath *)indexPath {
+    
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:indexPath.section];
+    
+    if (sectionObj) {
+        Class viewClass;
+        if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+            viewClass = sectionObj.headerModel.cellClass;
+        }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+            viewClass = sectionObj.footerModel.cellClass;
+        }
+        
+        if (viewClass) {
+            NSString *identifier = NSStringFromClass(viewClass);
+            [self _registerClass:viewClass forSupplementaryViewOfKind:kind];
+            
+            __kindof UICollectionReusableView <ATCellProtocal> *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+            view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+            return view;
+        }
+    }
+    
+    return nil;
+}
+
+- (void)_showSeperatorIfNeededInView:(__kindof UICollectionReusableView <ATCellProtocal> *)view {
+    
+    if (view.isShowSeperator) {
+        if (view.seperator) {
+            if (view.seperator.superview == nil) {
+                [view addSubview:view.seperator];
+                [view.seperator mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.bottom.right.equalTo(view).insets(view.seperatorInsets);
+                    make.height.mas_equalTo(0.5);
+                }];
+            }
+        }
+    }
+}
+
+#pragma mark - getter
+
+- (NSMutableDictionary<NSString *,Class> *)registerPool {
+    if (!_registerPool) {
+        _registerPool = [NSMutableDictionary dictionary];
+    }
+    return _registerPool;
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -119,7 +167,7 @@
     if (cellModel) {
         Class <ATCellProtocal> cellClass = cellModel.cellClass;
         NSString *identifier = NSStringFromClass(cellClass);
-        [collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
+        [self _registerClass:cellClass];
         
         __kindof UICollectionViewCell <ATCellProtocal> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
         if (cell.atDelegate == nil) { cell.atDelegate = self.cellAction; }

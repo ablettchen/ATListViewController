@@ -53,8 +53,8 @@
     
     [self.atTableView atLoadData:^(ATDataLoader * _Nonnull loader) {
         
-        [wSelf.viewModel requesTabletData:loader.rangeDic
-                               completion:^(NSError * _Nullable error, NSArray<id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId) {
+        [wSelf.viewModel requesNewsData:loader.rangeDic
+                             completion:^(NSError * _Nullable error, NSArray<id <ATSectionProtocal>> * _Nullable datas, NSString * _Nullable nextId) {
             [wSelf finished:error section:datas nextPageId:nextId];
         }];
         

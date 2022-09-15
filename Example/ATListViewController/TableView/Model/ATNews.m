@@ -8,18 +8,6 @@
 
 #import "ATNews.h"
 
-@implementation ATList
-
-- (instancetype)init {
-    
-    self = [super init];
-    if (self) {
-        _lastPage = YES;
-    }
-    return self;
-}
-
-@end
 
 @implementation ATNews
 

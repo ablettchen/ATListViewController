@@ -1,5 +1,5 @@
 //
-//  ATNewsCollectionSectionHeaderView.h
+//  ATAlbumCollectionSectionHeaderView.h
 //  ATListViewController_Example
 //
 //  Created by ablett on 2022/9/14.
@@ -10,11 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATNewsCollectionSectionHeaderView : ATCollectionReusableView
+@interface ATAlbumCollectionSectionHeaderView : ATCollectionReusableView
 
 @end
 
-@interface ATNewsCollectionSectionFooterView : ATCollectionReusableView
+@interface ATAlbumCollectionSectionFooterView : ATCollectionReusableView
 
 @end
 

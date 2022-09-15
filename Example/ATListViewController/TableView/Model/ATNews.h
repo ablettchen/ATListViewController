@@ -7,19 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <YYModel/YYModel.h>
 #import <ATListViewController/ATListViewController.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ATList : NSObject
-
-@property (nonatomic, copy) NSString *nextId;
-@property (nonatomic, assign) BOOL lastPage;
-@property (nonatomic, strong) NSArray *data;
-
-@end
 
 @interface ATNews : NSObject
 

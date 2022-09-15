@@ -11,13 +11,19 @@
 		194B713D28D0204A00A792D2 /* NewsP2.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 194B713B28D0204A00A792D2 /* NewsP2.JSON */; };
 		194B714328D0403B00A792D2 /* NewsP3.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 194B714228D0403B00A792D2 /* NewsP3.JSON */; };
 		197C1A9E28D1CF990099842C /* ATExampleCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 197C1A9D28D1CF990099842C /* ATExampleCollectionViewController.m */; };
-		19B66A2B28D1E4AE0055FCEE /* ATNewsCollectionSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B66A2A28D1E4AE0055FCEE /* ATNewsCollectionSectionHeaderView.m */; };
-		19B66A2E28D1E4CE0055FCEE /* ATNewsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B66A2D28D1E4CE0055FCEE /* ATNewsCollectionViewCell.m */; };
+		19B66A2B28D1E4AE0055FCEE /* ATAlbumCollectionSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B66A2A28D1E4AE0055FCEE /* ATAlbumCollectionSectionHeaderView.m */; };
+		19B66A2E28D1E4CE0055FCEE /* ATAlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B66A2D28D1E4CE0055FCEE /* ATAlbumCollectionViewCell.m */; };
 		19D546F428CB25C400FB8263 /* ATExampleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D546F328CB25C400FB8263 /* ATExampleTableViewController.m */; };
 		19D546FB28CB298700FB8263 /* ATNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D546FA28CB298700FB8263 /* ATNewsTableViewCell.m */; };
 		19D5470228CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470128CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m */; };
 		19D5470928CB405900FB8263 /* ATNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470828CB405900FB8263 /* ATNews.m */; };
 		19D5470E28CB424E00FB8263 /* ATNewsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D5470D28CB424E00FB8263 /* ATNewsViewModel.m */; };
+		19E334B328D2C21F0087BECA /* ATAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E334B228D2C21F0087BECA /* ATAlbum.m */; };
+		19E334B728D2C3F20087BECA /* ATList.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E334B628D2C3F20087BECA /* ATList.m */; };
+		19E334BB28D2C5DA0087BECA /* ATAlbumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E334BA28D2C5DA0087BECA /* ATAlbumViewModel.m */; };
+		19E334BF28D2C8250087BECA /* AlbumP1.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 19E334BC28D2C8250087BECA /* AlbumP1.JSON */; };
+		19E334C028D2C8250087BECA /* AlbumP3.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 19E334BD28D2C8250087BECA /* AlbumP3.JSON */; };
+		19E334C128D2C8260087BECA /* AlbumP2.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 19E334BE28D2C8250087BECA /* AlbumP2.JSON */; };
 		5136A8EDC55CDBF09741B6E0 /* Pods_ATListViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D59384A3BEF45989358B9D /* Pods_ATListViewController_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -53,10 +59,10 @@
 		194B714228D0403B00A792D2 /* NewsP3.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewsP3.JSON; sourceTree = "<group>"; };
 		197C1A9C28D1CF990099842C /* ATExampleCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATExampleCollectionViewController.h; sourceTree = "<group>"; };
 		197C1A9D28D1CF990099842C /* ATExampleCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATExampleCollectionViewController.m; sourceTree = "<group>"; };
-		19B66A2928D1E4AE0055FCEE /* ATNewsCollectionSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATNewsCollectionSectionHeaderView.h; sourceTree = "<group>"; };
-		19B66A2A28D1E4AE0055FCEE /* ATNewsCollectionSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATNewsCollectionSectionHeaderView.m; sourceTree = "<group>"; };
-		19B66A2C28D1E4CE0055FCEE /* ATNewsCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATNewsCollectionViewCell.h; sourceTree = "<group>"; };
-		19B66A2D28D1E4CE0055FCEE /* ATNewsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATNewsCollectionViewCell.m; sourceTree = "<group>"; };
+		19B66A2928D1E4AE0055FCEE /* ATAlbumCollectionSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAlbumCollectionSectionHeaderView.h; sourceTree = "<group>"; };
+		19B66A2A28D1E4AE0055FCEE /* ATAlbumCollectionSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAlbumCollectionSectionHeaderView.m; sourceTree = "<group>"; };
+		19B66A2C28D1E4CE0055FCEE /* ATAlbumCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAlbumCollectionViewCell.h; sourceTree = "<group>"; };
+		19B66A2D28D1E4CE0055FCEE /* ATAlbumCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAlbumCollectionViewCell.m; sourceTree = "<group>"; };
 		19D546F228CB25C400FB8263 /* ATExampleTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATExampleTableViewController.h; sourceTree = "<group>"; };
 		19D546F328CB25C400FB8263 /* ATExampleTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATExampleTableViewController.m; sourceTree = "<group>"; };
 		19D546F928CB298700FB8263 /* ATNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATNewsTableViewCell.h; sourceTree = "<group>"; };
@@ -67,6 +73,15 @@
 		19D5470828CB405900FB8263 /* ATNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATNews.m; sourceTree = "<group>"; };
 		19D5470C28CB424E00FB8263 /* ATNewsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATNewsViewModel.h; sourceTree = "<group>"; };
 		19D5470D28CB424E00FB8263 /* ATNewsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATNewsViewModel.m; sourceTree = "<group>"; };
+		19E334B128D2C21F0087BECA /* ATAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAlbum.h; sourceTree = "<group>"; };
+		19E334B228D2C21F0087BECA /* ATAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAlbum.m; sourceTree = "<group>"; };
+		19E334B528D2C3F20087BECA /* ATList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATList.h; sourceTree = "<group>"; };
+		19E334B628D2C3F20087BECA /* ATList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATList.m; sourceTree = "<group>"; };
+		19E334B928D2C5DA0087BECA /* ATAlbumViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAlbumViewModel.h; sourceTree = "<group>"; };
+		19E334BA28D2C5DA0087BECA /* ATAlbumViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAlbumViewModel.m; sourceTree = "<group>"; };
+		19E334BC28D2C8250087BECA /* AlbumP1.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumP1.JSON; sourceTree = "<group>"; };
+		19E334BD28D2C8250087BECA /* AlbumP3.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumP3.JSON; sourceTree = "<group>"; };
+		19E334BE28D2C8250087BECA /* AlbumP2.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumP2.JSON; sourceTree = "<group>"; };
 		41642B0E3FAB4679C4FED1B4 /* Pods-ATListViewController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATListViewController_Example.debug.xcconfig"; path = "Target Support Files/Pods-ATListViewController_Example/Pods-ATListViewController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		567BCC4574C390CE8262DF1B /* ATListViewController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ATListViewController.podspec; path = ../ATListViewController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6003F58A195388D20070C39A /* ATListViewController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATListViewController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +155,7 @@
 			children = (
 				197C1AA028D1CFB10099842C /* Controller */,
 				19B66A2F28D1E4D40055FCEE /* View */,
+				19E334B428D2C2250087BECA /* Model */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -156,10 +172,10 @@
 		19B66A2F28D1E4D40055FCEE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				19B66A2928D1E4AE0055FCEE /* ATNewsCollectionSectionHeaderView.h */,
-				19B66A2A28D1E4AE0055FCEE /* ATNewsCollectionSectionHeaderView.m */,
-				19B66A2C28D1E4CE0055FCEE /* ATNewsCollectionViewCell.h */,
-				19B66A2D28D1E4CE0055FCEE /* ATNewsCollectionViewCell.m */,
+				19B66A2928D1E4AE0055FCEE /* ATAlbumCollectionSectionHeaderView.h */,
+				19B66A2A28D1E4AE0055FCEE /* ATAlbumCollectionSectionHeaderView.m */,
+				19B66A2C28D1E4CE0055FCEE /* ATAlbumCollectionViewCell.h */,
+				19B66A2D28D1E4CE0055FCEE /* ATAlbumCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,6 +222,37 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		19E334B428D2C2250087BECA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				19E334B128D2C21F0087BECA /* ATAlbum.h */,
+				19E334B228D2C21F0087BECA /* ATAlbum.m */,
+				19E334B928D2C5DA0087BECA /* ATAlbumViewModel.h */,
+				19E334BA28D2C5DA0087BECA /* ATAlbumViewModel.m */,
+				19E334C228D2C82C0087BECA /* FakeJSON */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		19E334B828D2C3FF0087BECA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				19E334B528D2C3F20087BECA /* ATList.h */,
+				19E334B628D2C3F20087BECA /* ATList.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		19E334C228D2C82C0087BECA /* FakeJSON */ = {
+			isa = PBXGroup;
+			children = (
+				19E334BC28D2C8250087BECA /* AlbumP1.JSON */,
+				19E334BE28D2C8250087BECA /* AlbumP2.JSON */,
+				19E334BD28D2C8250087BECA /* AlbumP3.JSON */,
+			);
+			path = FakeJSON;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +295,7 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* ATViewController.h */,
 				6003F5A6195388D20070C39A /* ATViewController.m */,
+				19E334B828D2C3FF0087BECA /* Model */,
 				197C1A9F28D1CFAA0099842C /* CollectionView */,
 				19D5470428CB3FF600FB8263 /* TableView */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
@@ -391,11 +439,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				19E334C128D2C8260087BECA /* AlbumP2.JSON in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				194B713D28D0204A00A792D2 /* NewsP2.JSON in Resources */,
+				19E334C028D2C8250087BECA /* AlbumP3.JSON in Resources */,
 				194B713C28D0204A00A792D2 /* NewsP1.JSON in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				19E334BF28D2C8250087BECA /* AlbumP1.JSON in Resources */,
 				194B714328D0403B00A792D2 /* NewsP3.JSON in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +498,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -458,6 +510,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,16 +548,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				19D5470928CB405900FB8263 /* ATNews.m in Sources */,
+				19E334B728D2C3F20087BECA /* ATList.m in Sources */,
 				197C1A9E28D1CF990099842C /* ATExampleCollectionViewController.m in Sources */,
-				19B66A2E28D1E4CE0055FCEE /* ATNewsCollectionViewCell.m in Sources */,
+				19B66A2E28D1E4CE0055FCEE /* ATAlbumCollectionViewCell.m in Sources */,
 				19D546FB28CB298700FB8263 /* ATNewsTableViewCell.m in Sources */,
 				6003F59E195388D20070C39A /* ATAppDelegate.m in Sources */,
 				19D5470228CB3B5800FB8263 /* ATNewsTableSectionHeaderView.m in Sources */,
+				19E334B328D2C21F0087BECA /* ATAlbum.m in Sources */,
 				19D5470E28CB424E00FB8263 /* ATNewsViewModel.m in Sources */,
 				19D546F428CB25C400FB8263 /* ATExampleTableViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* ATViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
-				19B66A2B28D1E4AE0055FCEE /* ATNewsCollectionSectionHeaderView.m in Sources */,
+				19B66A2B28D1E4AE0055FCEE /* ATAlbumCollectionSectionHeaderView.m in Sources */,
+				19E334BB28D2C5DA0087BECA /* ATAlbumViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
