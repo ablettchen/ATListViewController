@@ -183,20 +183,11 @@
 		19D5470428CB3FF600FB8263 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				19D5470528CB401000FB8263 /* Controller */,
+				19E334FA28D2DC0D0087BECA /* Controller */,
 				19D5470628CB402600FB8263 /* View */,
 				19D5470A28CB406100FB8263 /* Model */,
 			);
 			path = TableView;
-			sourceTree = "<group>";
-		};
-		19D5470528CB401000FB8263 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				19D546F228CB25C400FB8263 /* ATExampleTableViewController.h */,
-				19D546F328CB25C400FB8263 /* ATExampleTableViewController.m */,
-			);
-			name = Controller;
 			sourceTree = "<group>";
 		};
 		19D5470628CB402600FB8263 /* View */ = {
@@ -251,6 +242,15 @@
 				19E334BD28D2C8250087BECA /* AlbumP3.JSON */,
 			);
 			path = FakeJSON;
+			sourceTree = "<group>";
+		};
+		19E334FA28D2DC0D0087BECA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				19D546F228CB25C400FB8263 /* ATExampleTableViewController.h */,
+				19D546F328CB25C400FB8263 /* ATExampleTableViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {

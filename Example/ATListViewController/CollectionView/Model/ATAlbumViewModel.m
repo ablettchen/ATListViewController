@@ -3,7 +3,7 @@
 //  ATListViewController_Example
 //
 //  Created by ablett on 2022/9/15.
-//  Copyright © 2022 chenjungang. All rights reserved.
+//  Copyright © 2022 ablett. All rights reserved.
 //
 
 #import "ATAlbumViewModel.h"
