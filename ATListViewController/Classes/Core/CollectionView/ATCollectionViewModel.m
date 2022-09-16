@@ -59,8 +59,8 @@
 
 - (void)_registerClass:(Class _Nonnull)cellClass {
     
-    NSString *idr = NSStringFromClass(cellClass);
-    [self _registerClass:cellClass forCellWithReuseIdentifier:idr];
+    NSString *identifier = NSStringFromClass(cellClass);
+    [self _registerClass:cellClass forCellWithReuseIdentifier:identifier];
 }
 
 - (void)_registerClass:(Class _Nonnull)cellClass forCellWithReuseIdentifier:(NSString * _Nonnull)identifier {
@@ -74,48 +74,21 @@
 
 - (void)_registerClass:(Class _Nonnull)viewClass forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind {
     
-    NSString *idr = NSStringFromClass(viewClass);
-    [self _registerClass:viewClass forSupplementaryViewOfKind:elementKind withReuseIdentifier:idr];
+    NSString *identifier = NSStringFromClass(viewClass);
+    [self _registerClass:viewClass forSupplementaryViewOfKind:elementKind withReuseIdentifier:identifier];
 }
 
 - (void)    _registerClass:(Class _Nonnull)viewClass
 forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind
        withReuseIdentifier:(NSString * _Nonnull)identifier {
     
-    NSString *idr = [elementKind stringByAppendingString:identifier];
-    
-    id obj = [self.registerPool objectForKey:idr];
+    id obj = [self.registerPool objectForKey:identifier];
     if (obj == nil) {
         [self.collectionView registerClass:viewClass
                 forSupplementaryViewOfKind:elementKind
                        withReuseIdentifier:identifier];
-        [self.registerPool setValue:viewClass forKey:idr];
+        [self.registerPool setValue:viewClass forKey:identifier];
     }
-}
-
-- (__kindof UICollectionReusableView <ATCellProtocal> * _Nullable)_dequeueReusableSupplementaryViewWithKind:(NSString * _Nullable)kind atIndexPath:(NSIndexPath *)indexPath {
-    
-    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:indexPath.section];
-    
-    if (sectionObj) {
-        Class viewClass;
-        if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-            viewClass = sectionObj.headerModel.cellClass;
-        }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-            viewClass = sectionObj.footerModel.cellClass;
-        }
-        
-        if (viewClass) {
-            NSString *identifier = NSStringFromClass(viewClass);
-            [self _registerClass:viewClass forSupplementaryViewOfKind:kind];
-            
-            __kindof UICollectionReusableView <ATCellProtocal> *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-            view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-            return view;
-        }
-    }
-    
-    return nil;
 }
 
 - (void)_showSeperatorIfNeededInView:(__kindof UICollectionReusableView <ATCellProtocal> *)view {
@@ -186,11 +159,25 @@ forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind
     id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:indexPath.section];
     
     if (sectionObj) {
-        __kindof UICollectionReusableView <ATCellProtocal> *view = [self _dequeueReusableSupplementaryViewWithKind:kind atIndexPath:indexPath];
-        if (view) {
+        
+        id <ATCellModelProtocol> viewModel;
+        if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+            viewModel = sectionObj.headerModel;
+        }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+            viewModel = sectionObj.footerModel;
+        }
+        
+        if (viewModel) {
+            Class viewClass = viewModel.cellClass;
+            NSString *identifier = NSStringFromClass(viewClass);
+            [self _registerClass:viewClass forSupplementaryViewOfKind:kind];
+            
+            __kindof UICollectionReusableView <ATCellProtocal> *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+            view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+            
             [self _showSeperatorIfNeededInView:view];
             if (view.atDelegate == nil) { view.atDelegate = self.cellAction; }
-            view.cellModel = sectionObj.headerModel;
+            view.cellModel = viewModel;
             return view;
         }
     }
