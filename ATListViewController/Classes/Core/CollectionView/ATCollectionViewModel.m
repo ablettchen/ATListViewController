@@ -46,7 +46,6 @@
         id <ATSectionProtocal> sectionObj = [self.sections objectAtIndex:indexPath.section];
         
         if (indexPath.row < sectionObj.cellModels.count) {
-            
             id <ATCellModelProtocol> cellModel = [sectionObj.cellModels objectAtIndex:indexPath.row];
             return cellModel;
         }
@@ -55,11 +54,35 @@
     return nil;
 }
 
+- (NSString * _Nonnull)cellIdentifierAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
+    
+    id <ATCellModelProtocol> cellModel = [self cellModelAtIndexPath:indexPath];
+    return NSStringFromClass(cellModel.cellClass);
+}
+
+- (id <ATCellModelProtocol> _Nullable)viewModelForSupplementaryViewOfKind:(NSString * _Nonnull)kind inSection:(NSUInteger)section {
+    
+    id <ATCellModelProtocol> viewModel;
+    id <ATSectionProtocal> sectionObj = [self.sections objectAtIndex:section];
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        viewModel = sectionObj.headerModel;
+    }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        viewModel = sectionObj.footerModel;
+    }
+    return viewModel;
+}
+
+- (NSString * _Nonnull)viewIdentifierForSupplementaryViewOfKind:(NSString * _Nonnull)kind inSection:(NSUInteger)section {
+    
+    id <ATCellModelProtocol> viewModel = [self viewModelForSupplementaryViewOfKind:kind inSection:section];
+    return NSStringFromClass(viewModel.cellClass);
+}
+
 #pragma mark - private
 
-- (void)_registerClass:(Class _Nonnull)cellClass {
+- (void)_registerClass:(Class _Nonnull)cellClass indexPath:(NSIndexPath * _Nonnull)indexPath {
     
-    NSString *identifier = NSStringFromClass(cellClass);
+    NSString *identifier = [self cellIdentifierAtIndexPath:indexPath];
     [self _registerClass:cellClass forCellWithReuseIdentifier:identifier];
 }
 
@@ -72,10 +95,10 @@
     }
 }
 
-- (void)_registerClass:(Class _Nonnull)viewClass forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind {
+- (void)_registerClass:(Class _Nonnull)viewClass forSupplementaryViewOfKind:(NSString * _Nonnull)kind inSection:(NSUInteger)section {
     
-    NSString *identifier = NSStringFromClass(viewClass);
-    [self _registerClass:viewClass forSupplementaryViewOfKind:elementKind withReuseIdentifier:identifier];
+    NSString *identifier = [self viewIdentifierForSupplementaryViewOfKind:kind inSection:section];
+    [self _registerClass:viewClass forSupplementaryViewOfKind:kind withReuseIdentifier:identifier];
 }
 
 - (void)    _registerClass:(Class _Nonnull)viewClass
@@ -139,9 +162,9 @@ forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind
     
     if (cellModel) {
         Class <ATCellProtocal> cellClass = cellModel.cellClass;
-        NSString *identifier = NSStringFromClass(cellClass);
-        [self _registerClass:cellClass];
+        [self _registerClass:cellClass indexPath:indexPath];
         
+        NSString *identifier = [self cellIdentifierAtIndexPath:indexPath];
         __kindof UICollectionViewCell <ATCellProtocal> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
         if (cell.atDelegate == nil) { cell.atDelegate = self.cellAction; }
         cell.cellModel = cellModel;
@@ -159,25 +182,18 @@ forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind
     id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:indexPath.section];
     
     if (sectionObj) {
-        
-        id <ATCellModelProtocol> viewModel;
-        if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-            viewModel = sectionObj.headerModel;
-        }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-            viewModel = sectionObj.footerModel;
-        }
+        id <ATCellModelProtocol> viewModel = [self viewModelForSupplementaryViewOfKind:kind inSection:indexPath.section];
         
         if (viewModel) {
             Class viewClass = viewModel.cellClass;
-            NSString *identifier = NSStringFromClass(viewClass);
-            [self _registerClass:viewClass forSupplementaryViewOfKind:kind];
+            [self _registerClass:viewClass forSupplementaryViewOfKind:kind inSection:indexPath.section];
             
+            NSString *identifier = [self viewIdentifierForSupplementaryViewOfKind:kind inSection:indexPath.section];
             __kindof UICollectionReusableView <ATCellProtocal> *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-            view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-            
             [self _showSeperatorIfNeededInView:view];
             if (view.atDelegate == nil) { view.atDelegate = self.cellAction; }
             view.cellModel = viewModel;
+        
             return view;
         }
     }
@@ -217,7 +233,7 @@ forSupplementaryViewOfKind:(NSString * _Nonnull)elementKind
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     
     id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
-
+    
     if (sectionObj) {
         return CGSizeMake(sectionObj.headerModel.cellStyle.cellWidth, sectionObj.headerModel.cellHeight);
     }

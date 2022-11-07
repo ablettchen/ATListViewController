@@ -41,7 +41,6 @@
         id <ATSectionProtocal> sectionObj = [self.sections objectAtIndex:indexPath.section];
         
         if (indexPath.row < sectionObj.cellModels.count) {
-            
             id <ATCellModelProtocol> cellModel = [sectionObj.cellModels objectAtIndex:indexPath.row];
             return cellModel;
         }
@@ -50,16 +49,40 @@
     return nil;
 }
 
+- (NSString * _Nonnull)cellIdentifierAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
+    
+    id <ATCellModelProtocol> cellModel = [self cellModelAtIndexPath:indexPath];
+    return NSStringFromClass(cellModel.cellClass);
+}
+
+- (id <ATCellModelProtocol> _Nullable)viewModelForReusableHeaderFooterViewOfKind:(BOOL)isHeader inSection:(NSUInteger)section {
+    
+    id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
+    id <ATCellModelProtocol> viewModel = isHeader ? sectionObj.headerModel : sectionObj.footerModel;
+    return viewModel;
+}
+
+- (NSString * _Nonnull)viewIdentifierForReusableHeaderFooterViewOfKind:(BOOL)isHeader inSection:(NSUInteger)section {
+    
+    id <ATCellModelProtocol> viewModel = [self viewModelForReusableHeaderFooterViewOfKind:isHeader inSection:section];
+    return NSStringFromClass(viewModel.cellClass);
+}
+
 #pragma mark - private
 
-- (__kindof UITableViewHeaderFooterView <ATCellProtocal> * _Nonnull )_dequeueReusableHeaderFooterViewWithViewClass:(Class <ATCellProtocal> _Nonnull)viewClass {
+- (__kindof UITableViewHeaderFooterView <ATCellProtocal> * _Nonnull )_dequeueReusableHeaderFooterOfKind:(BOOL)isHeader inSection:(NSUInteger)section  {
     
-    NSString *identifier = NSStringFromClass(viewClass);
-    
+    NSString *identifier = [self viewIdentifierForReusableHeaderFooterViewOfKind:isHeader inSection:section];
     __kindof UITableViewHeaderFooterView <ATCellProtocal> *view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
-    if (!view) { [self.tableView registerClass:viewClass forHeaderFooterViewReuseIdentifier:identifier]; } else { return view; }
-    view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     
+    if (!view) {
+        id <ATCellModelProtocol> viewModel = [self viewModelForReusableHeaderFooterViewOfKind:isHeader inSection:section];
+        [self.tableView registerClass:viewModel.cellClass forHeaderFooterViewReuseIdentifier:identifier];
+    } else {
+        return view;
+    }
+    
+    view = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     return view;
 }
 
@@ -122,12 +145,11 @@
     id <ATCellModelProtocol> cellModel = [self cellModelAtIndexPath:indexPath];
     
     if (cellModel) {
-        Class <ATCellProtocal> cellClass = cellModel.cellClass;
-        NSString *identifier = NSStringFromClass(cellClass);
-        
+        NSString *identifier = [self cellIdentifierAtIndexPath:indexPath];
         __kindof UITableViewCell <ATCellProtocal> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        
         if (!cell) {
-            [tableView registerClass:cellClass forCellReuseIdentifier:identifier];
+            [tableView registerClass:cellModel.cellClass forCellReuseIdentifier:identifier];
             cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
         }
         
@@ -159,7 +181,7 @@
     id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
-        __kindof UITableViewHeaderFooterView <ATCellProtocal> *view = [self _dequeueReusableHeaderFooterViewWithViewClass:sectionObj.headerModel.cellClass];
+        __kindof UITableViewHeaderFooterView <ATCellProtocal> *view = [self _dequeueReusableHeaderFooterOfKind:YES inSection:section];
         [self _showSeperatorIfNeededInView:view];
         if (view.atDelegate == nil) { view.atDelegate = self.cellAction; }
         view.cellModel = sectionObj.headerModel;
@@ -185,7 +207,7 @@
     id <ATSectionProtocal> sectionObj = [self sectionObjectInSection:section];
     
     if (sectionObj) {
-        __kindof UITableViewHeaderFooterView <ATCellProtocal> *view = [self _dequeueReusableHeaderFooterViewWithViewClass:sectionObj.footerModel.cellClass];
+        __kindof UITableViewHeaderFooterView <ATCellProtocal> *view = [self _dequeueReusableHeaderFooterOfKind:NO inSection:section];
         [self _showSeperatorIfNeededInView:view];
         if (view.atDelegate == nil) { view.atDelegate = self.cellAction; }
         view.cellModel = sectionObj.footerModel;

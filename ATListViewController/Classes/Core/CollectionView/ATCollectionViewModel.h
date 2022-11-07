@@ -36,6 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
 // 根据 indexPath 取 cellModel
 - (id <ATCellModelProtocol> _Nullable)cellModelAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 
+// 根据 indexPath 取 cell 标识
+- (NSString * _Nonnull)cellIdentifierAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
+
+// 根据 indexPath 取 viewModel
+- (id <ATCellModelProtocol> _Nullable)viewModelForSupplementaryViewOfKind:(NSString * _Nonnull)kind inSection:(NSUInteger)section;
+
+// 根据 indexPath 取 view 标识
+- (NSString * _Nonnull)viewIdentifierForSupplementaryViewOfKind:(NSString * _Nonnull)elementKind inSection:(NSUInteger)section;
 
 @end
 
